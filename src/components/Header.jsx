@@ -18,7 +18,7 @@ function Wordmark({ langue, t, className = '' }) {
   return (
     <Link to={chemin('accueil', langue)} className={`flex items-center gap-3 text-ink ${className}`} aria-label={t.nav.retourAccueil}>
       <Marque className="h-8 w-8 shrink-0" />
-      <span className="font-display text-xl leading-none tracking-tight" style={{ fontVariationSettings: '"opsz" 32, "SOFT" 100' }}>
+      <span className="whitespace-nowrap font-display text-xl leading-none tracking-tight" style={{ fontVariationSettings: '"opsz" 32, "SOFT" 100' }}>
         {site.nom}
       </span>
     </Link>
