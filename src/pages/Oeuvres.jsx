@@ -20,7 +20,8 @@ export default function Oeuvres({ langue }) {
             const apercus = s.oeuvres.slice(0, 3)
             return (
               <li key={s.cle} className="grid items-center gap-12 lg:grid-cols-12">
-                {/* Trois toiles qui se chevauchent : la série en un coup d'œil. */}
+                {/* Trois toiles qui se chevauchent : la série en un coup d'œil.
+                    36 + 44 + 36 − 2×8 de chevauchement = 100 % : rien ne déborde. */}
                 <div className="relative mx-auto flex w-full max-w-md items-center justify-center lg:col-span-6 lg:max-w-none">
                   {apercus.map((o, i) => (
                     <Tondo
@@ -28,7 +29,7 @@ export default function Oeuvres({ langue }) {
                       oeuvre={o}
                       langue={langue}
                       priorite
-                      className={`w-[46%] shrink-0 ${i === 1 ? 'z-10 -mx-[8%] w-[54%]' : ''}`}
+                      className={`w-[36%] shrink-0 ${i === 1 ? 'z-10 -mx-[8%] w-[44%]' : ''}`}
                       sizes="(min-width: 1024px) 24rem, 45vw"
                     />
                   ))}

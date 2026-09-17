@@ -66,6 +66,13 @@
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
   }
 
+  /* Tailwind 4 ne met plus de curseur « main » sur les boutons : on le
+     rétablit, sinon rien ne dit qu'une toile de la galerie est cliquable. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
   ::selection {
     background: var(--color-cobalt);
     color: var(--color-paper);
