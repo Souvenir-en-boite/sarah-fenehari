@@ -46,7 +46,7 @@ Les toiles de Sarah sont **rondes**. Tout le site en découle :
   œuvre éclaire sa propre salle), au champ de couleur de l'accueil et au
   « spectre » du pied de page — une bande où chaque segment est une toile ;
 - la galerie a deux affichages : la grille, et **à l'échelle**, où chaque toile
-  a la taille de son diamètre réel (de 30 à 100 cm), alignées à hauteur de
+  a la taille de son diamètre réel (de 20 à 100 cm), alignées à hauteur de
   regard comme sur un mur d'exposition ;
 - les tondos de l'accueil et de la page NFT tournent sur eux-mêmes, une
   révolution en trois minutes — désactivé si le système demande de réduire

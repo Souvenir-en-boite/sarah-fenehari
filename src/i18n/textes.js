@@ -64,7 +64,7 @@ export const textes = {
       serieEyebrow: 'La série',
       serieTitre: (n, periode) => `${n} toiles rondes, ${periode}`,
       serieTexte:
-        "Toutes portent le même nom, suivi d'un numéro. Elles mesurent de 30 à 100 centimètres de diamètre — les voici à l'échelle, les unes à côté des autres.",
+        "Toutes portent le même nom, suivi d'un numéro. Elles mesurent de 20 à 100 centimètres de diamètre — les voici à l'échelle, les unes à côté des autres.",
       echelleLegende: 'Diamètres réels, à la même échelle',
       demarcheEyebrow: 'Démarche',
       demarcheTitre: "Une matière qui « va de soi »",
@@ -91,7 +91,7 @@ export const textes = {
       modeGrille: 'Grille',
       modeEchelle: "À l'échelle",
       echelleNote:
-        'Les toiles sont affichées proportionnellement à leur diamètre réel, de 30 à 100 cm, centrées à hauteur de regard.',
+        'Les toiles sont affichées proportionnellement à leur diamètre réel, de 20 à 100 cm, centrées à hauteur de regard.',
       agrandir: 'Agrandir',
       fermer: 'Fermer la visionneuse',
       precedente: 'Œuvre précédente',
@@ -219,7 +219,7 @@ export const textes = {
       serieEyebrow: 'The series',
       serieTitre: (n, periode) => `${n} round canvases, ${periode}`,
       serieTexte:
-        'They all share the same name, followed by a number. They range from 30 to 100 centimetres in diameter — here they are to scale, side by side.',
+        'They all share the same name, followed by a number. They range from 20 to 100 centimetres in diameter — here they are to scale, side by side.',
       echelleLegende: 'Real diameters, at the same scale',
       demarcheEyebrow: 'Approach',
       demarcheTitre: 'A substance that "goes without saying"',
@@ -245,7 +245,7 @@ export const textes = {
       modeGrille: 'Grid',
       modeEchelle: 'To scale',
       echelleNote:
-        'Canvases are displayed in proportion to their real diameter, from 30 to 100 cm, centred at eye level.',
+        'Canvases are displayed in proportion to their real diameter, from 20 to 100 cm, centred at eye level.',
       agrandir: 'Enlarge',
       fermer: 'Close viewer',
       precedente: 'Previous work',

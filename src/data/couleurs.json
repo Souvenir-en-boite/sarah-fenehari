@@ -1,4 +1,49 @@
 {
+  "/assets/picture/composition/composition-39.avif": {
+    "dominante": "#f95706",
+    "palette": [
+      "#f95706",
+      "#060486",
+      "#090937",
+      "#86380a"
+    ]
+  },
+  "/assets/picture/composition/composition-41.avif": {
+    "dominante": "#281916",
+    "palette": [
+      "#281916",
+      "#b73709",
+      "#060388",
+      "#663725"
+    ]
+  },
+  "/assets/picture/composition/composition-43.avif": {
+    "dominante": "#d34728",
+    "palette": [
+      "#d34728",
+      "#883646",
+      "#c87463",
+      "#2a2296"
+    ]
+  },
+  "/assets/picture/composition/composition-48.avif": {
+    "dominante": "#3a56a8",
+    "palette": [
+      "#3a56a8",
+      "#7688b9",
+      "#060967",
+      "#abb3cb"
+    ]
+  },
+  "/assets/picture/composition/composition-50.avif": {
+    "dominante": "#572605",
+    "palette": [
+      "#572605",
+      "#e65806",
+      "#fa942b",
+      "#994106"
+    ]
+  },
   "/assets/picture/composition/composition-51.avif": {
     "dominante": "#37271a",
     "palette": [
@@ -17,6 +62,15 @@
       "#783a0a"
     ]
   },
+  "/assets/picture/composition/composition-53.avif": {
+    "dominante": "#058599",
+    "palette": [
+      "#058599",
+      "#89b6d8",
+      "#3b97c6",
+      "#063b7a"
+    ]
+  },
   "/assets/picture/composition/composition-54.avif": {
     "dominante": "#081837",
     "palette": [
@@ -24,6 +78,24 @@
       "#f84706",
       "#873807",
       "#fce805"
+    ]
+  },
+  "/assets/picture/composition/composition-55.avif": {
+    "dominante": "#027688",
+    "palette": [
+      "#027688",
+      "#48a979",
+      "#96c889",
+      "#d7e5a8"
+    ]
+  },
+  "/assets/picture/composition/composition-56.avif": {
+    "dominante": "#78c6e4",
+    "palette": [
+      "#78c6e4",
+      "#07a7e4",
+      "#438cc8",
+      "#c2cddb"
     ]
   },
   "/assets/picture/composition/composition-57.avif": {
@@ -42,6 +114,14 @@
       "#f7b957",
       "#f8b807",
       "#d76a03"
+    ]
+  },
+  "/assets/picture/composition/composition-59.avif": {
+    "dominante": "#4798b8",
+    "palette": [
+      "#4798b8",
+      "#87bbd8",
+      "#0a7596"
     ]
   },
   "/assets/picture/composition/composition-60.avif": {
@@ -184,6 +264,24 @@
       "#571738",
       "#374869",
       "#a64736"
+    ]
+  },
+  "/assets/picture/composition/composition-77.avif": {
+    "dominante": "#05b7c8",
+    "palette": [
+      "#05b7c8",
+      "#045787",
+      "#04175a",
+      "#55d5d3"
+    ]
+  },
+  "/assets/picture/composition/composition-78.avif": {
+    "dominante": "#0b1737",
+    "palette": [
+      "#0b1737",
+      "#284a77",
+      "#96a8c8",
+      "#5777a9"
     ]
   },
   "/assets/picture/composition/composition-79.avif": {

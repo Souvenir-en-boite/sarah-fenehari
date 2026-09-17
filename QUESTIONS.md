@@ -18,11 +18,17 @@ Ce qu'il faut savoir avant la mise en ligne. Les réponses vont dans
 
 ## Contenu
 
-4. **Les œuvres.** Le site reprend les 25 toiles de la galerie Wix avec leurs
+4. **Les œuvres.** Le site reprend les 36 toiles de la galerie Wix avec leurs
    légendes (année, diamètre, technique). Faut-il en ajouter, en retirer, ou
    corriger une légende ? Les photos en haute définition existent-elles ?
    (Celles du Wix font ~3 900 px, c'est très bien ; les originaux seraient
-   encore mieux pour le détourage.)
+   encore mieux pour le détourage.) **Composition 48** n'existe qu'en
+   1 080 px sur le Wix : une photo plus grande serait bienvenue.
+4b. **Les anciennes compositions.** Le Wix contient 19 pages cachées
+   (Composition 11, 15, 20, 24, 25, 26, 27, 35 à 44, 46, 48), plus dans aucun
+   menu, chacune avec une seule image et sans légende. Ce sont probablement
+   des œuvres plus anciennes. Faut-il les ajouter à la galerie (avec année,
+   diamètre et technique à nous fournir), ou les laisser de côté ?
 5. **Disponibilité et prix.** Souhaite-t-elle indiquer quelles œuvres sont
    disponibles, vendues, ou en collection privée ? Afficher des prix, ou
    « sur demande » ? (Le site ne l'affiche pas pour l'instant.)
