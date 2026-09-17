@@ -1,0 +1,21 @@
+# À chaque push et pull request : le site doit se construire, et le HTML
+# généré doit passer les contrôles (un h1 par page, alt et dimensions sur les
+# images, aperçus de partage, hreflang, données structurées…).
+name: Build et vérifications
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run verifier

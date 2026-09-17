@@ -1,0 +1,14 @@
+# Dépendances
+/node_modules
+
+# Build
+/dist
+
+# Système
+.DS_Store
+
+# Variables locales
+.env*.local
+
+# Journaux
+npm-debug.log*
