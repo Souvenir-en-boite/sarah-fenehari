@@ -24,35 +24,40 @@ export default function Accueil({ langue }) {
       <Seo langue={langue} cle="accueil" description={t.accueil.metaDescription} imageAlt={t.accueil.texte} />
       <DonneesStructurees langue={langue} />
 
-      {/* ——— Ouverture : le titre à gauche, la toile qui déborde en haut à droite,
-             les quatre mots-clés en colonne. */}
+      {/* ——— Ouverture, d'après la maquette de Sarah : son nom en titre, l'accroche
+             en italique, et la toile coupée par le coin haut-droit de l'écran. */}
       <section className="relative overflow-hidden border-b border-line">
-        <Container className="relative grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-12 lg:gap-6 lg:py-0">
-          <div className="relative z-10 lg:col-span-5 lg:py-24">
+        {/* La toile est calée sur le coin de la fenêtre, pas sur la colonne de
+            texte : on n'en voit qu'une partie, le reste sort du cadre. */}
+        <div
+          className="pointer-events-none absolute -right-[38%] -top-[22%] w-[92vw] sm:-right-[22%] sm:w-[70vw] lg:-right-[12%] lg:-top-[30%] lg:w-[58vw] lg:max-w-[980px]"
+        >
+          <Tondo oeuvre={hero} langue={langue} priorite tourne sizes="(min-width: 1024px) 58vw, 92vw" />
+        </div>
+
+        <Container className="relative flex min-h-[72svh] flex-col justify-end pb-14 pt-[46vw] sm:pt-[34vw] lg:min-h-[78svh] lg:justify-center lg:py-24">
+          <div className="max-w-xl lg:max-w-[46%]">
             <Eyebrow>{t.accueil.eyebrow}</Eyebrow>
-            <h1 className="mt-6 text-[2.4rem] sm:text-6xl lg:text-[4.5rem] xl:text-[5rem]">{t.accueil.titre}</h1>
-            <p className="mt-7 max-w-md leading-relaxed text-ink-soft">{t.accueil.texte}</p>
+            <h1 className="mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem]">
+              {t.accueil.titre.map((mot) => <span key={mot} className="block">{mot}</span>)}
+            </h1>
+            <p className="citation mt-8 max-w-md text-xl text-ink sm:text-2xl">{t.accueil.accroche}</p>
             <Bouton to={chemin('galerie', langue)} className="mt-10">{t.boutons.decouvrir}</Bouton>
           </div>
 
-          <figure className="relative lg:col-span-6 lg:col-start-6 lg:h-full">
-            {/* Sur grand écran la toile remonte au-dessus du cadre et déborde à droite. */}
-            <div className="mx-auto w-[82%] max-w-[26rem] lg:absolute lg:-top-[8%] lg:left-[14%] lg:w-[105%] lg:max-w-none">
-              <Tondo oeuvre={hero} langue={langue} priorite tourne sizes="(min-width: 1024px) 60vw, 82vw" />
-            </div>
-            <figcaption className="mt-5 text-center text-xs text-ink-soft lg:absolute lg:bottom-0 lg:left-[14%] lg:text-left">{t.accueil.legendeHero(hero)}</figcaption>
-          </figure>
-
-          {/* Colonne de mots-clés, façon cartel vertical. */}
-          <ul aria-label={langue === 'fr' ? 'Mots-clés' : 'Keywords'} className="hidden lg:col-span-1 lg:flex lg:flex-col lg:items-end lg:gap-3 lg:self-center">
-            {t.accueil.motsCles.map((m) => <li key={m} className="eyebrow text-ink-soft">{m}</li>)}
-            <li aria-hidden="true" className="mt-3 h-12 w-px bg-line" />
-          </ul>
+          {/* Légende de la toile et indicateur de défilement, en bas à droite. */}
+          <div className="mt-12 flex items-center gap-10 text-xs text-ink-soft lg:absolute lg:bottom-8 lg:left-14 lg:mt-0">
+            <p>{t.accueil.legendeHero(hero)}</p>
+            <a href="#selection" className="eyebrow hidden items-center gap-3 text-ink-soft transition-colors hover:text-ink lg:inline-flex">
+              {t.accueil.defiler}
+              <span aria-hidden="true" className="block h-px w-8 bg-ink-soft" />
+            </a>
+          </div>
         </Container>
       </section>
 
       {/* ——— Sélection d'œuvres : quatre cartes. */}
-      <section className="apparait py-20 lg:py-24">
+      <section id="selection" className="apparait py-20 lg:py-24">
         <Container>
           <div className="flex items-end justify-between gap-6">
             <Eyebrow filet>{t.accueil.selectionEyebrow}</Eyebrow>

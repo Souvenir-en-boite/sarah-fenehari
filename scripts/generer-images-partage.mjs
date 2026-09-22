@@ -15,7 +15,7 @@ import { series } from '../src/data/series.js'
 import { portrait, visuelNft, oeuvresEchelleAccueil, details, vueAccrochage } from '../src/data/site.js'
 
 const L = 1200, H = 630
-const PAPIER = '#f5f2ec'
+const PAPIER = '#f7f6f3'
 const SOURCE = 'public/assets/picture'
 const CIBLE = 'public/assets/partage'
 

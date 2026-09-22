@@ -12,19 +12,20 @@
 
 @theme {
   /*
-   * Palette. Papier chaud, encre presque noire, gris de matière pour les
-   * fonds de cartes ; la couleur, c'est celle des toiles. Le cobalt, tiré des
+   * Palette. Blanc cassé à peine grisé (celui des maquettes de Sarah, pas un
+   * papier jaune), encre presque noire, gris de matière pour les fonds de
+   * cartes ; la couleur, c'est celle des toiles. Le cobalt, tiré des
    * tondos bleus, reste réservé au focus clavier et à la sélection.
    *
    * Contrastes vérifiés (WCAG AA) : ink sur paper 15.6:1, ink-soft sur paper
    * 6.9:1, ink-soft sur paper-deep 6.1:1, paper sur night 15.2:1.
    */
-  --color-paper: #f5f2ec;
-  --color-paper-deep: #ebe7df;
-  --color-paper-mat: #e6e1d8;
+  --color-paper: #f7f6f3;
+  --color-paper-deep: #eeece8;
+  --color-paper-mat: #e9e7e2;
   --color-ink: #17161a;
   --color-ink-soft: #5c5a63;
-  --color-line: #d9d3c7;
+  --color-line: #dbd9d4;
   --color-night: #141316;
   --color-cobalt: #2437b8;
 
