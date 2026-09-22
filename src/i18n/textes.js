@@ -56,11 +56,12 @@ export const textes = {
     },
 
     accueil: {
-      eyebrow: 'Sarah Fenehari — Artiste peintre',
-      titre: 'Compositions',
+      eyebrow: 'Artiste peintre',
+      titre: ['Sarah', 'Fenehari'],
+      accroche: "Une exploration de la matière, de la couleur et de la lumière, pour révéler l'essentiel.",
       texte:
         "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
-      motsCles: ['Couleur', 'Espace', 'Lumière', 'Geste'],
+      defiler: 'Défiler',
       metaDescription:
         'Sarah Fenehari, artiste peintre en Seine-et-Marne. Compositions : des tondos abstraits où la couleur devient matière vivante. Œuvres, démarche, expositions.',
       legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylique sur toile, Ø ${o.cm} cm.`,
@@ -238,10 +239,11 @@ export const textes = {
     },
 
     accueil: {
-      eyebrow: 'Sarah Fenehari — Painter',
-      titre: 'Compositions',
+      eyebrow: 'Painter',
+      titre: ['Sarah', 'Fenehari'],
+      accroche: 'An exploration of matter, colour and light, to reveal the essential.',
       texte: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
-      motsCles: ['Colour', 'Space', 'Light', 'Gesture'],
+      defiler: 'Scroll',
       metaDescription:
         'Sarah Fenehari, painter based near Paris. Compositions: abstract tondos where colour becomes a living substance. Works, approach, exhibitions.',
       legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylic on canvas, Ø ${o.cm} cm.`,
