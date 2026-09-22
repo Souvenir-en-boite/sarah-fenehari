@@ -19,7 +19,7 @@ let echecs = 0
 const aVerifier = []
 const apercus = []
 const ko = (f, m) => { console.log('  ✗ ' + f.replace('dist', '') + ' — ' + m); echecs++ }
-const ignorer = (f) => f === 'dist/404.html'
+const ignorer = (f) => f === 'dist/404.html' || f.endsWith('/composition/index.html')
 
 for (const f of html.sort()) {
   if (ignorer(f)) continue

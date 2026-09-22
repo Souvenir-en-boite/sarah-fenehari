@@ -12,7 +12,7 @@ import { mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import sharp from 'sharp'
 import { series } from '../src/data/series.js'
-import { portrait, visuelNft, oeuvresEchelleAccueil } from '../src/data/site.js'
+import { portrait, visuelNft, oeuvresEchelleAccueil, details, vueAccrochage } from '../src/data/site.js'
 
 const L = 1200, H = 630
 const PAPIER = '#f5f2ec'
@@ -44,6 +44,14 @@ await ecrire(
   sharp(join(SOURCE, portrait.src.replace('/assets/picture/', ''))).resize(L, H, { fit: 'cover', position: sharp.gravity.north }),
   versCible(portrait.src),
 )
+
+// Images d'ambiance (détails de toiles, vue d'accrochage) : recadrées en paysage.
+for (const image of [...Object.values(details), vueAccrochage]) {
+  await ecrire(
+    sharp(join(SOURCE, image.src.replace('/assets/picture/', ''))).resize(L, H, { fit: 'cover', position: sharp.gravity.centre }),
+    versCible(image.src),
+  )
+}
 
 // Image par défaut : les tondos de l'accueil, à l'échelle, sur une ligne.
 {

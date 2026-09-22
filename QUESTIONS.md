@@ -15,6 +15,10 @@ Ce qu'il faut savoir avant la mise en ligne. Les réponses vont dans
    d'identification (SIRET, ou numéro Urssaf artistes-auteurs / Maison des
    Artistes), et si elle veut afficher un téléphone. → `editeur`
    Tant que ces champs sont vides, la page les affiche surlignés « à compléter ».
+   Note : les mentions légales de souvenir-en-boite (son activité de
+   photographe) contiennent déjà statut, adresse et SIRET. On ne les recopie
+   pas sans son accord : lui demander si la peinture relève de la même
+   entreprise, et si elle veut afficher la même adresse.
 
 ## Contenu
 

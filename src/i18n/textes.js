@@ -2,7 +2,7 @@
 //
 // Tout ce qui s'affiche et ne relève pas d'un contenu (menu, boutons,
 // libellés de formulaire, messages) vit ici. Les contenus — biographie,
-// séries, œuvres — portent leurs propres traductions dans src/data/.
+// séries, œuvres, citations — portent leurs propres traductions dans src/data/.
 //
 // Règle : la même clé existe dans les deux langues, dans le même ordre.
 
@@ -14,8 +14,10 @@ export const textes = {
 
     nav: {
       accueil: 'Accueil',
-      galerie: 'Galerie',
+      galerie: 'Œuvres',
+      demarche: 'Démarche',
       biographie: 'Biographie',
+      expositions: 'Expositions',
       nft: 'NFT',
       contact: 'Contact',
       principale: 'Navigation principale',
@@ -30,15 +32,16 @@ export const textes = {
     },
 
     boutons: {
+      decouvrir: 'Découvrir les œuvres',
+      toutesOeuvres: 'Voir toutes les œuvres',
+      galerieComplete: 'Voir la galerie complète',
+      enSavoirPlus: 'En savoir plus',
+      toutesExpositions: 'Voir toutes les expositions',
       contacter: 'Me contacter',
-      ecrire: 'Écrire à Sarah',
-      voirGalerie: 'Voir la galerie',
-      voirSerie: 'Voir la série',
-      voirOeuvres: 'Voir les œuvres',
+      acquerir: 'Acquérir une œuvre',
       retourAccueil: "Retour à l'accueil",
-      lireBiographie: 'Lire la biographie',
-      toutesExpositions: 'Toutes les expositions',
       voirOpenSea: 'Voir la collection sur OpenSea',
+      lireBiographie: 'Lire la biographie',
     },
 
     piedDePage: {
@@ -53,38 +56,40 @@ export const textes = {
     },
 
     accueil: {
-      eyebrow: 'Artiste peintre · Tondos',
-      titre: 'Sarah Fenehari',
-      accroche: 'La couleur, libérée de toute figuration.',
+      eyebrow: 'Sarah Fenehari — Artiste peintre',
+      titre: 'Compositions',
       texte:
-        "Des toiles rondes où la couleur jaillit d'un centre et devient matière vivante : la vibration d'une lumière sur l'eau, la transparence d'un feuillage, la densité d'un ciel chargé.",
+        "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
+      motsCles: ['Couleur', 'Espace', 'Lumière', 'Geste'],
       metaDescription:
-        'Sarah Fenehari, artiste peintre en région parisienne. Tondos abstraits de la série Composition, expositions, œuvres disponibles en NFT.',
+        'Sarah Fenehari, artiste peintre en Seine-et-Marne. Compositions : des tondos abstraits où la couleur devient matière vivante. Œuvres, démarche, expositions.',
       legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylique sur toile, Ø ${o.cm} cm.`,
-      serieEyebrow: 'La série',
-      serieTitre: (n, periode) => `${n} toiles rondes, ${periode}`,
-      serieTexte:
-        "Toutes portent le même nom, suivi d'un numéro. Elles mesurent de 20 à 100 centimètres de diamètre — les voici à l'échelle, les unes à côté des autres.",
-      echelleLegende: 'Diamètres réels, à la même échelle',
+      selectionEyebrow: "Sélection d'œuvres",
       demarcheEyebrow: 'Démarche',
-      demarcheTitre: "Une matière qui « va de soi »",
+      demarcheTitre: 'Une démarche artistique',
       expositionsEyebrow: 'Expositions',
-      expositionsTitre: 'Dernières expositions',
+      accrochageLegende: 'Vue d’accrochage',
       nftEyebrow: 'Œuvres numériques',
-      nftTitre: 'Les compositions existent aussi en NFT',
+      nftTitre: 'Les compositions en NFT',
+      nftTexte: 'Une sélection de compositions est disponible sur OpenSea.',
       contactEyebrow: 'Contact',
-      contactTitre: 'Une œuvre vous parle ?',
+      contactTitre: "Échanger autour d'une œuvre",
       contactTexte:
-        "Acquisition, exposition, commande ou simple curiosité : écrivez-moi, je réponds à chaque message.",
+        "Vous souhaitez acquérir une œuvre, obtenir des informations sur une exposition ou me contacter pour un projet ? Je serai ravie d'échanger avec vous.",
     },
 
     galerie: {
-      titre: 'Galerie',
-      eyebrow: 'Œuvres',
-      chapo: 'Les œuvres sont regroupées par série. Chaque toile s’ouvre en grand, avec son année, son diamètre et sa technique.',
+      titre: 'Les œuvres',
+      eyebrow: 'Galerie',
+      chapo: "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
       metaDescription:
-        'Galerie des œuvres de Sarah Fenehari : la série Composition, des tondos abstraits en acrylique sur toile.',
-      serie: 'Série',
+        'Toutes les œuvres de Sarah Fenehari : la série Composition, des tondos abstraits en acrylique sur toile, de 20 à 100 cm.',
+      filtreLibelle: 'Filtrer les œuvres',
+      toutes: 'Toutes',
+      grandsFormats: 'Grands formats',
+      moyensFormats: 'Moyens formats',
+      petitsFormats: 'Petits formats',
+      formatNote: 'Grands formats : 80 cm et plus. Moyens : 50 à 70 cm. Petits : 40 cm et moins.',
       oeuvres: (n) => (n > 1 ? `${n} œuvres` : `${n} œuvre`),
       diametre: (cm) => `Ø ${cm} cm`,
       modeLibelle: 'Affichage',
@@ -98,17 +103,40 @@ export const textes = {
       suivante: 'Œuvre suivante',
       position: (i, n) => `œuvre ${i} sur ${n}`,
       visionneuse: 'Visionneuse',
+      aucune: 'Aucune œuvre ne correspond à ce filtre.',
+    },
+
+    demarche: {
+      titre: 'Une exploration sensorielle',
+      eyebrow: 'Démarche',
+      metaDescription:
+        "La démarche artistique de Sarah Fenehari : libérer la couleur de toute figuration, effacer la trace du geste, laisser l'œuvre exister comme une présence autonome.",
+      citationEyebrow: 'Maurice Denis',
     },
 
     biographie: {
-      titre: 'Biographie',
-      eyebrow: 'Parcours',
-      demarche: 'Démarche artistique',
-      expositions: 'Expositions',
+      titre: "Un parcours au service de l'art",
+      eyebrow: 'Biographie',
       neeLe: 'Née en 1995 à Villeneuve-Saint-Georges',
       vit: 'Vit et travaille en région parisienne',
       metaDescription:
-        'Parcours, démarche artistique et expositions de Sarah Fenehari, artiste peintre diplômée de la Sorbonne et enseignante en arts plastiques.',
+        "Parcours de Sarah Fenehari, artiste peintre diplômée de la Sorbonne et enseignante en arts plastiques : formation, démarche, expositions.",
+      chiffres: {
+        annees: (n) => [String(n), "années d'expositions"],
+        expositions: (n) => [`${n}`, 'expositions'],
+        oeuvres: (n) => [`${n}`, 'œuvres en ligne'],
+      },
+    },
+
+    expositions: {
+      titre: 'Parcours & actualités',
+      eyebrow: 'Expositions',
+      chapo:
+        'Mes œuvres ont été présentées dans plusieurs salons et expositions en France et en Europe. Chaque rencontre est une étape précieuse dans ce parcours.',
+      metaDescription:
+        'Expositions et salons de Sarah Fenehari depuis 2015 : ART3F Paris, Luxembourg et Bruxelles, Salon d’Automne, Artbox Zurich, Centre Annie Fratellini.',
+      aVenir: 'À venir',
+      passees: 'Expositions passées',
     },
 
     nft: {
@@ -116,21 +144,22 @@ export const textes = {
       eyebrow: 'Œuvres numériques',
       metaDescription:
         'Les œuvres de Sarah Fenehari sont disponibles sous forme de NFT sur la plateforme OpenSea.',
-      note: 'La collection est hébergée et vendue sur OpenSea. Ce site ne contient aucun portefeuille ni transaction : le bouton ci-dessus ouvre simplement la page de la collection.',
+      note: 'La collection est hébergée et vendue sur OpenSea. Ce site ne contient aucun portefeuille ni transaction : le bouton ouvre simplement la page de la collection.',
     },
 
     contact: {
-      titre: 'Contact',
-      eyebrow: 'Écrivez-moi',
+      titre: 'Acquérir une œuvre',
+      eyebrow: 'Contact',
       chapo:
-        "Une question sur une œuvre, un projet d'exposition, une demande d'acquisition ? Écrivez-moi, je vous répondrai dès que possible.",
+        "Vous souhaitez acquérir une œuvre, obtenir des informations sur une exposition ou me contacter pour un projet ? Je serai ravie d'échanger avec vous.",
       metaDescription:
-        'Contacter Sarah Fenehari, artiste peintre : acquisition, exposition, collaboration.',
+        'Contacter Sarah Fenehari, artiste peintre : acquisition d’une œuvre, exposition, collaboration.',
       formulaireTitre: 'Envoyez-moi un message',
-      suivre: 'Suivre mon travail',
-      parMail: 'Par e-mail',
+      atelier: 'Atelier',
+      email: 'E-mail',
+      reseaux: 'Réseaux',
       nom: 'Votre nom',
-      email: 'Votre e-mail',
+      emailChamp: 'Votre e-mail',
       sujet: 'Sujet',
       message: 'Votre message',
       messagePlaceholder: 'Dites-moi en plus sur votre demande…',
@@ -142,7 +171,7 @@ export const textes = {
     },
 
     merci: {
-      titre: 'Merci pour votre message !',
+      titre: 'Merci pour votre message',
       eyebrow: 'Message envoyé',
       chapo: "Je l'ai bien reçu et je vous réponds dès que possible. En attendant, la galerie vous est ouverte.",
       metaTitre: 'Message envoyé',
@@ -157,9 +186,7 @@ export const textes = {
       metaDescription: "Cette page n'existe pas ou a été déplacée.",
     },
 
-    legal: {
-      aCompleter: 'à compléter',
-    },
+    legal: { aCompleter: 'à compléter' },
   },
 
   en: {
@@ -169,8 +196,10 @@ export const textes = {
 
     nav: {
       accueil: 'Home',
-      galerie: 'Gallery',
+      galerie: 'Works',
+      demarche: 'Approach',
       biographie: 'Biography',
+      expositions: 'Exhibitions',
       nft: 'NFT',
       contact: 'Contact',
       principale: 'Main navigation',
@@ -185,15 +214,16 @@ export const textes = {
     },
 
     boutons: {
+      decouvrir: 'Discover the works',
+      toutesOeuvres: 'View all works',
+      galerieComplete: 'View the full gallery',
+      enSavoirPlus: 'Read more',
+      toutesExpositions: 'View all exhibitions',
       contacter: 'Get in touch',
-      ecrire: 'Write to Sarah',
-      voirGalerie: 'View the gallery',
-      voirSerie: 'View the series',
-      voirOeuvres: 'View the works',
+      acquerir: 'Acquire a work',
       retourAccueil: 'Back to home',
-      lireBiographie: 'Read the biography',
-      toutesExpositions: 'All exhibitions',
       voirOpenSea: 'View the collection on OpenSea',
+      lireBiographie: 'Read the biography',
     },
 
     piedDePage: {
@@ -208,81 +238,106 @@ export const textes = {
     },
 
     accueil: {
-      eyebrow: 'Painter · Tondos',
-      titre: 'Sarah Fenehari',
-      accroche: 'Colour, freed from all figuration.',
-      texte:
-        'Round canvases where colour bursts from a centre and becomes a living substance: the shimmer of light on water, the translucence of foliage, the weight of a heavy sky.',
+      eyebrow: 'Sarah Fenehari — Painter',
+      titre: 'Compositions',
+      texte: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
+      motsCles: ['Colour', 'Space', 'Light', 'Gesture'],
       metaDescription:
-        'Sarah Fenehari, painter based near Paris. Abstract tondos from the Composition series, exhibitions, artworks available as NFTs.',
+        'Sarah Fenehari, painter based near Paris. Compositions: abstract tondos where colour becomes a living substance. Works, approach, exhibitions.',
       legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylic on canvas, Ø ${o.cm} cm.`,
-      serieEyebrow: 'The series',
-      serieTitre: (n, periode) => `${n} round canvases, ${periode}`,
-      serieTexte:
-        'They all share the same name, followed by a number. They range from 20 to 100 centimetres in diameter — here they are to scale, side by side.',
-      echelleLegende: 'Real diameters, at the same scale',
+      selectionEyebrow: 'Selected works',
       demarcheEyebrow: 'Approach',
-      demarcheTitre: 'A substance that "goes without saying"',
+      demarcheTitre: 'An artistic approach',
       expositionsEyebrow: 'Exhibitions',
-      expositionsTitre: 'Recent exhibitions',
+      accrochageLegende: 'Installation view',
       nftEyebrow: 'Digital works',
-      nftTitre: 'The compositions also exist as NFTs',
+      nftTitre: 'The compositions as NFTs',
+      nftTexte: 'A selection of compositions is available on OpenSea.',
       contactEyebrow: 'Contact',
-      contactTitre: 'Does a work speak to you?',
-      contactTexte: 'Acquisition, exhibition, commission or simple curiosity: write to me, I reply to every message.',
+      contactTitre: 'Talk about a work',
+      contactTexte:
+        'Would you like to acquire a work, learn about an exhibition or get in touch about a project? I would be delighted to hear from you.',
     },
 
     galerie: {
-      titre: 'Gallery',
-      eyebrow: 'Works',
-      chapo: 'Works are grouped by series. Each canvas opens in full size, with its year, diameter and technique.',
+      titre: 'The works',
+      eyebrow: 'Gallery',
+      chapo: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
       metaDescription:
-        'Gallery of works by Sarah Fenehari: the Composition series, abstract tondos in acrylic on canvas.',
-      serie: 'Series',
+        'All works by Sarah Fenehari: the Composition series, abstract tondos in acrylic on canvas, from 20 to 100 cm.',
+      filtreLibelle: 'Filter the works',
+      toutes: 'All',
+      grandsFormats: 'Large formats',
+      moyensFormats: 'Medium formats',
+      petitsFormats: 'Small formats',
+      formatNote: 'Large: 80 cm and above. Medium: 50 to 70 cm. Small: 40 cm and below.',
       oeuvres: (n) => (n > 1 ? `${n} works` : `${n} work`),
       diametre: (cm) => `Ø ${cm} cm`,
       modeLibelle: 'Display',
       modeGrille: 'Grid',
       modeEchelle: 'To scale',
-      echelleNote:
-        'Canvases are displayed in proportion to their real diameter, from 20 to 100 cm, centred at eye level.',
+      echelleNote: 'Canvases are displayed in proportion to their real diameter, from 20 to 100 cm, centred at eye level.',
       agrandir: 'Enlarge',
       fermer: 'Close viewer',
       precedente: 'Previous work',
       suivante: 'Next work',
       position: (i, n) => `work ${i} of ${n}`,
       visionneuse: 'Viewer',
+      aucune: 'No work matches this filter.',
+    },
+
+    demarche: {
+      titre: 'A sensory exploration',
+      eyebrow: 'Approach',
+      metaDescription:
+        "Sarah Fenehari's artistic approach: freeing colour from figuration, erasing the trace of the gesture, letting the work exist as an autonomous presence.",
+      citationEyebrow: 'Maurice Denis',
     },
 
     biographie: {
-      titre: 'Biography',
-      eyebrow: 'Background',
-      demarche: 'Artistic approach',
-      expositions: 'Exhibitions',
+      titre: 'A path devoted to art',
+      eyebrow: 'Biography',
       neeLe: 'Born in 1995 in Villeneuve-Saint-Georges',
       vit: 'Lives and works in the Paris area',
       metaDescription:
-        'Background, artistic approach and exhibitions of Sarah Fenehari, painter, Sorbonne graduate and visual arts teacher.',
+        'Background of Sarah Fenehari, painter, Sorbonne graduate and visual arts teacher: training, approach, exhibitions.',
+      chiffres: {
+        annees: (n) => [String(n), 'years of exhibitions'],
+        expositions: (n) => [`${n}`, 'exhibitions'],
+        oeuvres: (n) => [`${n}`, 'works online'],
+      },
+    },
+
+    expositions: {
+      titre: 'Exhibitions & news',
+      eyebrow: 'Exhibitions',
+      chapo:
+        'My works have been shown in several art fairs and exhibitions in France and Europe. Each encounter is a precious step along the way.',
+      metaDescription:
+        'Exhibitions and art fairs of Sarah Fenehari since 2015: ART3F Paris, Luxembourg and Brussels, Salon d’Automne, Artbox Zurich, Centre Annie Fratellini.',
+      aVenir: 'Upcoming',
+      passees: 'Past exhibitions',
     },
 
     nft: {
       titre: 'NFT',
       eyebrow: 'Digital works',
       metaDescription: "Sarah Fenehari's artworks are available as NFTs on the OpenSea platform.",
-      note: 'The collection is hosted and sold on OpenSea. This website contains no wallet and no transaction: the button above simply opens the collection page.',
+      note: 'The collection is hosted and sold on OpenSea. This website contains no wallet and no transaction: the button simply opens the collection page.',
     },
 
     contact: {
-      titre: 'Contact',
-      eyebrow: 'Write to me',
+      titre: 'Acquire a work',
+      eyebrow: 'Contact',
       chapo:
-        'A question about a work, an exhibition project, a purchase enquiry? Write to me and I will reply as soon as possible.',
-      metaDescription: 'Contact Sarah Fenehari, painter: acquisitions, exhibitions, collaborations.',
+        'Would you like to acquire a work, learn about an exhibition or get in touch about a project? I would be delighted to hear from you.',
+      metaDescription: 'Contact Sarah Fenehari, painter: acquiring a work, exhibitions, collaborations.',
       formulaireTitre: 'Send me a message',
-      suivre: 'Follow my work',
-      parMail: 'By e-mail',
+      atelier: 'Studio',
+      email: 'E-mail',
+      reseaux: 'Social',
       nom: 'Your name',
-      email: 'Your e-mail',
+      emailChamp: 'Your e-mail',
       sujet: 'Subject',
       message: 'Your message',
       messagePlaceholder: 'Tell me more about your enquiry…',
@@ -294,7 +349,7 @@ export const textes = {
     },
 
     merci: {
-      titre: 'Thank you for your message!',
+      titre: 'Thank you for your message',
       eyebrow: 'Message sent',
       chapo: 'I have received it and will reply as soon as possible. In the meantime, the gallery is open.',
       metaTitre: 'Message sent',
@@ -309,8 +364,6 @@ export const textes = {
       metaDescription: 'This page does not exist or has been moved.',
     },
 
-    legal: {
-      aCompleter: 'to be completed',
-    },
+    legal: { aCompleter: 'to be completed' },
   },
 }

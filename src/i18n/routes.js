@@ -14,7 +14,9 @@ export const langueParDefaut = 'fr'
 export const slugs = {
   accueil: { fr: '', en: '' },
   galerie: { fr: 'galerie', en: 'gallery' },
+  demarche: { fr: 'demarche', en: 'approach' },
   biographie: { fr: 'biographie', en: 'biography' },
+  expositions: { fr: 'expositions', en: 'exhibitions' },
   nft: { fr: 'nft', en: 'nft' },
   contact: { fr: 'contact', en: 'contact' },
   merci: { fr: 'merci', en: 'thank-you' },

@@ -22,5 +22,8 @@
       ]
     }
   ],
-  "redirects": []
+  "redirects": [
+    { "source": "/galerie/composition", "destination": "/galerie", "permanent": true },
+    { "source": "/en/gallery/composition", "destination": "/en/gallery", "permanent": true }
+  ]
 }

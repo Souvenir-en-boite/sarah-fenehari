@@ -3,34 +3,32 @@
 /* Polices auto-hébergées : aucune requête vers Google Fonts (pas de transfert
    d'IP vers un tiers, donc rien à déclarer côté RGPD), et pas de blocage du
    rendu par un domaine externe.
-   - Fraunces : serif à empattements souples, avec axe optique et italique.
-     Les titres et les numéros d'œuvres.
+   - Cormorant Garamond : serif fin, en capitales espacées pour les titres,
+     en italique pour les citations — le registre des maquettes de Sarah.
    - Instrument Sans : linéale discrète pour le texte courant et l'interface. */
-@import "@fontsource-variable/fraunces/opsz.css";
-@import "@fontsource-variable/fraunces/opsz-italic.css";
+@import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource-variable/cormorant-garamond/wght-italic.css";
 @import "@fontsource-variable/instrument-sans";
 
 @theme {
   /*
-   * Palette. Le site n'a pas de couleur d'accent fixe : la couleur, c'est
-   * celle des toiles. Le décor se limite à un papier chaud et une encre
-   * légèrement bleutée — le noir des tondos sombres. Le seul accent, le
-   * cobalt, vient lui aussi des toiles ; il sert aux liens et au focus.
+   * Palette. Papier chaud, encre presque noire, gris de matière pour les
+   * fonds de cartes ; la couleur, c'est celle des toiles. Le cobalt, tiré des
+   * tondos bleus, reste réservé au focus clavier et à la sélection.
    *
    * Contrastes vérifiés (WCAG AA) : ink sur paper 15.6:1, ink-soft sur paper
-   * 6.9:1, cobalt sur paper 6.4:1, paper sur night 15.2:1.
+   * 6.9:1, ink-soft sur paper-deep 6.1:1, paper sur night 15.2:1.
    */
   --color-paper: #f5f2ec;
-  --color-paper-deep: #ebe6dc;
+  --color-paper-deep: #ebe7df;
+  --color-paper-mat: #e6e1d8;
   --color-ink: #17161a;
   --color-ink-soft: #5c5a63;
   --color-line: #d9d3c7;
-  --color-night: #0e0d12;
-  --color-night-soft: #1d1c23;
+  --color-night: #141316;
   --color-cobalt: #2437b8;
-  --color-cobalt-soft: #4b5fd6;
 
-  --font-display: "Fraunces Variable", Fraunces, "Iowan Old Style", Georgia, serif;
+  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-sans: "Instrument Sans Variable", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
   /* Rotation lente des tondos : une révolution toutes les trois minutes. */
@@ -50,20 +48,19 @@
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Titres : serif en capitales, espacées, graisse légère. */
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 300;
-    letter-spacing: -0.015em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     line-height: 1.05;
-    /* Fraunces : axe optique calé sur la taille d'affichage, et « SOFT » au
-       maximum pour des empattements ronds — l'écho des toiles. */
-    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
   }
 
   /* Tailwind 4 ne met plus de curseur « main » sur les boutons : on le
@@ -74,18 +71,15 @@
   }
 
   ::selection {
-    background: var(--color-cobalt);
+    background: var(--color-ink);
     color: var(--color-paper);
   }
 
-  /* Anneau de focus visible au clavier uniquement. */
   :focus-visible {
     outline: 2px solid var(--color-cobalt);
     outline-offset: 4px;
-    border-radius: 2px;
   }
 
-  /* Respecte le réglage système « réduire les animations ». */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -97,28 +91,50 @@
 }
 
 @layer components {
-  /* Libellé en petites capitales espacées. */
+  /* Libellé en petites capitales espacées : les surtitres, le menu, les boutons. */
   .eyebrow {
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
   }
 
-  /* Numéro d'œuvre en italique Fraunces : « Composition 81 ». */
+  /* Surtitre suivi d'un filet, comme « SÉLECTION D'ŒUVRES ———— ». */
+  .eyebrow-filet {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .eyebrow-filet::after {
+    content: "";
+    height: 1px;
+    width: 5rem;
+    background: var(--color-line);
+  }
+
+  /* Titre d'œuvre : petites capitales sans, comme les cartels des maquettes. */
   .titre-oeuvre {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Citation en italique serif, sans capitales. */
+  .citation {
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 300;
-    font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.35;
   }
 
   /*
-   * Tondo : l'image est carrée avec un fond transparent ; on ne masque rien.
-   * `--teinte` (posée en inline depuis src/data/couleurs.json) donne la
-   * couleur dominante de l'œuvre : elle sert au halo, léger comme la
-   * lumière que renvoie une toile sur un mur blanc.
+   * Tondo : l'image est carrée avec un fond transparent ; le cercle, c'est
+   * l'image elle-même. `--teinte` (posée en inline depuis couleurs.json) donne
+   * la couleur dominante de l'œuvre, pour un halo léger comme la lumière que
+   * renvoie une toile sur un mur blanc.
    */
   .tondo {
     position: relative;
@@ -128,72 +144,43 @@
   .tondo::before {
     content: "";
     position: absolute;
-    inset: -12%;
+    inset: -10%;
     border-radius: inherit;
     background: radial-gradient(closest-side, var(--teinte, transparent) 0%, transparent 100%);
-    opacity: 0.22;
+    opacity: 0.18;
     z-index: -1;
     transition: opacity 600ms ease, transform 600ms ease;
   }
   .group:hover .tondo::before,
   .group:focus-within .tondo::before {
-    opacity: 0.5;
-    transform: scale(1.08);
+    opacity: 0.4;
+    transform: scale(1.06);
   }
 
-  /*
-   * Halo au pied du hero et derrière les sections sombres : plusieurs
-   * dégradés radiaux dont les couleurs viennent des toiles elles-mêmes
-   * (variables posées en inline). Grain SVG par-dessus pour la matière.
-   */
-  .champ-de-couleur {
-    background:
-      radial-gradient(60% 55% at 20% 30%, var(--c1) 0%, transparent 70%),
-      radial-gradient(50% 60% at 80% 20%, var(--c2) 0%, transparent 70%),
-      radial-gradient(70% 60% at 60% 90%, var(--c3) 0%, transparent 70%),
-      radial-gradient(45% 45% at 10% 90%, var(--c4) 0%, transparent 70%);
-    filter: saturate(0.9);
-  }
-  .grain {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.35;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  /* Carré de présentation : le fond gris clair des maquettes, la toile posée dedans. */
+  .mat {
+    background: var(--color-paper-mat);
+    padding: 12%;
   }
 
-  /* Filet horizontal fin, dans la couleur des lignes. */
-  .filet {
-    height: 1px;
-    background: var(--color-line);
-  }
+  /* Filet horizontal fin. */
+  .filet { height: 1px; background: var(--color-line); }
 
-  /* Bloc de prose (biographie, pages légales). */
-  .prose-site {
-    color: var(--color-ink-soft);
-    line-height: 1.7;
-  }
-  .prose-site h2 { margin-top: 3rem; font-size: 1.75rem; color: var(--color-ink); }
-  .prose-site h3 { margin-top: 2rem; font-size: 1.25rem; color: var(--color-ink); }
+  /* Bloc de prose (démarche, biographie, pages légales). */
+  .prose-site { color: var(--color-ink-soft); line-height: 1.75; }
+  .prose-site h2 { margin-top: 3rem; font-size: 1.5rem; color: var(--color-ink); }
+  .prose-site h3 { margin-top: 2rem; font-size: 1.125rem; color: var(--color-ink); }
   .prose-site p { margin-top: 1.1rem; }
   .prose-site p:first-child { margin-top: 0; }
   .prose-site ul { margin-top: 1rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .prose-site li { list-style: disc; }
-  .prose-site a { color: var(--color-cobalt); text-decoration: underline; text-underline-offset: 4px; }
-  .prose-site a:hover { color: var(--color-ink); }
+  .prose-site a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--color-line); }
+  .prose-site a:hover { text-decoration-color: var(--color-ink); }
   .prose-site strong { color: var(--color-ink); font-weight: 500; }
+  .prose-site mark { background: var(--color-paper-mat); color: var(--color-ink); padding: 0 0.3em; }
 
-  /* Lettrine du premier paragraphe de la démarche. */
-  .lettrine::first-letter {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: 3.6em;
-    line-height: 0.8;
-    float: left;
-    margin: 0.08em 0.12em 0 0;
-    color: var(--color-ink);
-  }
+  /* Portrait en noir et blanc, comme sur les maquettes. */
+  .noir-et-blanc { filter: grayscale(1) contrast(1.05); }
 
   /* Entrée d'une œuvre dans la visionneuse. */
   @keyframes entre-de-droite { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: none; } }
@@ -202,13 +189,7 @@
   .entre-de-gauche { animation: entre-de-gauche 260ms ease-out; }
 
   /* Apparition douce des sections au défilement (voir useApparition). */
-  .apparait {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 700ms ease, transform 700ms ease;
-  }
+  .apparait { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
   .apparait.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .apparait { opacity: 1; transform: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .apparait { opacity: 1; transform: none; } }
 }

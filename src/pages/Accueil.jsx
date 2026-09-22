@@ -1,180 +1,150 @@
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { Seo, DonneesStructurees } from '../components/Seo'
-import { Container, Bouton, Eyebrow, TitreSection } from '../components/ui'
-import { Tondo, paletteDe } from '../components/Tondo'
+import { Container, Bouton, Eyebrow, TitreSection, Image, BandeauCitation } from '../components/ui'
+import { Tondo } from '../components/Tondo'
+import { CarteOeuvre } from '../components/CarteOeuvre'
 import { useApparition } from '../components/useApparition'
-import { series, periode } from '../data/series'
+import { series } from '../data/series'
 import { biographie, expositions } from '../data/biographie'
-import { oeuvreAccueil, oeuvresEchelleAccueil, portrait, visuelNft, site } from '../data/site'
+import { oeuvreAccueil, oeuvresSelection, portrait, vueAccrochage, visuelNft, citations, site } from '../data/site'
 import { textes } from '../i18n/textes'
 import { chemin } from '../i18n/routes'
 
 export default function Accueil({ langue }) {
   const t = textes[langue]
-  const serie = series[0]
-  const hero = serie.oeuvres.find((o) => o.numero === oeuvreAccueil)
-  const echelle = oeuvresEchelleAccueil.map((n) => serie.oeuvres.find((o) => o.numero === n))
+  const oeuvres = series.flatMap((s) => s.oeuvres)
+  const hero = oeuvres.find((o) => o.numero === oeuvreAccueil)
+  const selection = oeuvresSelection.map((n) => oeuvres.find((o) => o.numero === n))
   const bio = biographie[langue]
-  const palette = paletteDe(hero.src)
   useApparition()
 
   return (
     <>
-      <Seo langue={langue} cle="accueil" description={t.accueil.metaDescription} imageAlt={t.accueil.accroche} />
+      <Seo langue={langue} cle="accueil" description={t.accueil.metaDescription} imageAlt={t.accueil.texte} />
       <DonneesStructurees langue={langue} />
 
-      {/* ——— Ouverture : le nom, une phrase, et une toile qui tourne lentement. */}
-      <section className="relative overflow-hidden">
-        <Container className="grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-10">
-          <div className="lg:col-span-6">
+      {/* ——— Ouverture : le titre à gauche, la toile qui déborde en haut à droite,
+             les quatre mots-clés en colonne. */}
+      <section className="relative overflow-hidden border-b border-line">
+        <Container className="relative grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-12 lg:gap-6 lg:py-0">
+          <div className="relative z-10 lg:col-span-5 lg:py-24">
             <Eyebrow>{t.accueil.eyebrow}</Eyebrow>
-            <h1 className="mt-6 text-6xl sm:text-7xl lg:text-[6.5rem]">{t.accueil.titre}</h1>
-            <p className="titre-oeuvre mt-8 max-w-xl text-2xl text-ink sm:text-3xl">{t.accueil.accroche}</p>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">{t.accueil.texte}</p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Bouton to={chemin('galerie', langue, serie.cle)}>
-                {t.boutons.voirOeuvres}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Bouton>
-              <Bouton to={chemin('biographie', langue)} variante="contour">{t.boutons.lireBiographie}</Bouton>
-            </div>
+            <h1 className="mt-6 text-5xl sm:text-6xl lg:text-[4.5rem] xl:text-[5rem]">{t.accueil.titre}</h1>
+            <p className="mt-7 max-w-md leading-relaxed text-ink-soft">{t.accueil.texte}</p>
+            <Bouton to={chemin('galerie', langue)} className="mt-10">{t.boutons.decouvrir}</Bouton>
           </div>
 
-          <figure className="relative mx-auto w-full max-w-[26rem] lg:col-span-6 lg:max-w-none lg:translate-x-[10%]">
-            <Tondo oeuvre={hero} langue={langue} priorite tourne className="mx-auto w-full lg:max-w-[44rem]" sizes="(min-width: 1024px) 44rem, 90vw" />
-            <figcaption className="mt-6 text-center text-sm text-ink-soft lg:text-left lg:pl-12">{t.accueil.legendeHero(hero)}</figcaption>
+          <figure className="relative lg:col-span-6 lg:col-start-6 lg:h-full">
+            {/* Sur grand écran la toile remonte au-dessus du cadre et déborde à droite. */}
+            <div className="mx-auto w-[82%] max-w-[26rem] lg:absolute lg:-top-[8%] lg:left-[14%] lg:w-[105%] lg:max-w-none">
+              <Tondo oeuvre={hero} langue={langue} priorite tourne sizes="(min-width: 1024px) 60vw, 82vw" />
+            </div>
+            <figcaption className="mt-5 text-center text-xs text-ink-soft lg:absolute lg:bottom-0 lg:left-[14%] lg:text-left">{t.accueil.legendeHero(hero)}</figcaption>
           </figure>
+
+          {/* Colonne de mots-clés, façon cartel vertical. */}
+          <ul aria-label={langue === 'fr' ? 'Mots-clés' : 'Keywords'} className="hidden lg:col-span-1 lg:flex lg:flex-col lg:items-end lg:gap-3 lg:self-center">
+            {t.accueil.motsCles.map((m) => <li key={m} className="eyebrow text-ink-soft">{m}</li>)}
+            <li aria-hidden="true" className="mt-3 h-12 w-px bg-line" />
+          </ul>
         </Container>
       </section>
 
-      {/* ——— La série, à l'échelle réelle. */}
-      <section className="apparait py-24 lg:py-32">
+      {/* ——— Sélection d'œuvres : quatre cartes. */}
+      <section className="apparait py-20 lg:py-24">
         <Container>
-          <TitreSection eyebrow={t.accueil.serieEyebrow} titre={t.accueil.serieTitre(serie.oeuvres.length, periode(serie))} description={t.accueil.serieTexte} />
-          <ul
-            className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-10 lg:justify-between lg:gap-x-4"
-            style={{ '--px-par-cm': 'clamp(1.5px, 0.3vw, 3.2px)' }}
-            aria-label={t.accueil.echelleLegende}
-          >
-            {echelle.map((o) => (
-              <li key={o.src} className="flex flex-col items-center" style={{ width: `calc(${o.cm} * var(--px-par-cm))` }}>
-                <Tondo oeuvre={o} langue={langue} sizes="(min-width: 1024px) 320px, 40vw" />
-                <span className="mt-4 whitespace-nowrap text-xs text-ink-soft">{o.numero} · {o.cm} cm</span>
+          <div className="flex items-end justify-between gap-6">
+            <Eyebrow filet>{t.accueil.selectionEyebrow}</Eyebrow>
+            <Bouton to={chemin('galerie', langue)} variante="lien" className="hidden sm:inline-flex">{t.boutons.toutesOeuvres}</Bouton>
+          </div>
+          <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-10">
+            {selection.map((o, i) => (
+              <li key={o.src}>
+                <Link to={chemin('galerie', langue)} className="group block">
+                  <CarteOeuvre oeuvre={o} langue={langue} t={t} priorite={i < 2} sizes="(min-width: 1024px) 22vw, 45vw" />
+                  <span className="sr-only">{t.boutons.toutesOeuvres}</span>
+                </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-16 flex justify-center">
-            <Bouton to={chemin('galerie', langue, serie.cle)} variante="contour">
-              {t.boutons.voirSerie}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Bouton>
+          <div className="mt-10 sm:hidden">
+            <Bouton to={chemin('galerie', langue)} variante="lien">{t.boutons.toutesOeuvres}</Bouton>
           </div>
         </Container>
       </section>
 
-      {/* ——— La citation de Maurice Denis, sur un champ de couleur tiré de la toile d'ouverture. */}
-      <section className="relative isolate overflow-hidden py-28 lg:py-40">
-        <div
-          aria-hidden="true"
-          className="champ-de-couleur absolute inset-0 -z-10 opacity-[0.28]"
-          style={{ '--c1': palette[0], '--c2': palette[1] ?? palette[0], '--c3': palette[2] ?? palette[0], '--c4': palette[3] ?? palette[1] ?? palette[0] }}
-        />
-        <div aria-hidden="true" className="grain -z-10" />
-        <Container>
-          <blockquote className="apparait mx-auto max-w-4xl text-center">
-            <p className="font-display text-3xl leading-[1.2] text-ink sm:text-4xl lg:text-5xl" style={{ fontVariationSettings: '"opsz" 96, "SOFT" 100' }}>
-              « {bio.citation.texte} »
-            </p>
-            <footer className="mt-8 text-sm text-ink-soft">— {bio.citation.auteur}</footer>
-          </blockquote>
-        </Container>
-      </section>
-
-      {/* ——— La démarche, en deux paragraphes, avec le portrait en rond. */}
-      <section className="apparait py-24 lg:py-32">
-        <Container className="grid items-center gap-12 lg:grid-cols-12">
-          <div className="mx-auto w-56 sm:w-64 lg:col-span-4 lg:w-full lg:max-w-[22rem]">
-            <img
-              src={portrait.src}
-              alt={portrait.alt[langue]}
-              width={portrait.width}
-              height={portrait.height}
-              loading="lazy"
-              decoding="async"
-              className="aspect-square w-full rounded-full object-cover object-top"
-            />
+      {/* ——— Démarche + expositions : portrait noir et blanc, texte, colonne de dates, vue d'accrochage. */}
+      <section className="apparait border-t border-line">
+        <div className="grid lg:grid-cols-12">
+          <div className="lg:col-span-3">
+            <Image image={portrait} langue={langue} className="noir-et-blanc aspect-[4/5] lg:aspect-auto lg:h-full" sizes="(min-width: 1024px) 25vw, 100vw" />
           </div>
-          <div className="lg:col-span-7 lg:col-start-6">
+          <div className="px-5 py-14 sm:px-8 lg:col-span-4 lg:px-12 lg:py-20">
             <TitreSection eyebrow={t.accueil.demarcheEyebrow} titre={t.accueil.demarcheTitre} />
             <div className="prose-site mt-8">
               <p>{bio.demarche[0]}</p>
-              <p>{bio.demarche[1]}</p>
+              <p>{bio.demarche[1].split('. ').slice(0, 2).join('. ')}.</p>
             </div>
-            <Bouton to={chemin('biographie', langue)} variante="lien" className="mt-8">
-              {t.boutons.lireBiographie}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Bouton>
+            <Bouton to={chemin('demarche', langue)} variante="lien" className="mt-8">{t.boutons.enSavoirPlus}</Bouton>
           </div>
-        </Container>
-      </section>
-
-      {/* ——— Dernières expositions. */}
-      <section className="apparait border-t border-line py-24 lg:py-32">
-        <Container className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <TitreSection eyebrow={t.accueil.expositionsEyebrow} titre={t.accueil.expositionsTitre} />
-            <Bouton to={`${chemin('biographie', langue)}#expositions`} variante="lien" className="mt-8">
-              {t.boutons.toutesExpositions}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Bouton>
+          <div className="border-t border-line px-5 py-14 sm:px-8 lg:col-span-3 lg:border-l lg:border-t-0 lg:px-10 lg:py-20">
+            <h2 className="text-2xl">{t.accueil.expositionsEyebrow}</h2>
+            <span className="mt-4 block h-px w-12 bg-line" />
+            <ol className="mt-8 flex flex-col gap-6">
+              {expositions.slice(0, 3).map((e, i) => (
+                <li key={i} className="grid grid-cols-[3.5rem_1fr] gap-4 text-sm">
+                  <span className="eyebrow pt-0.5 text-ink-soft">{e.annee}</span>
+                  <span className="text-ink">{e[langue]}</span>
+                </li>
+              ))}
+            </ol>
+            <Bouton to={chemin('expositions', langue)} variante="lien" className="mt-10">{t.boutons.toutesExpositions}</Bouton>
           </div>
-          <ol className="divide-y divide-line lg:col-span-7 lg:col-start-6">
-            {expositions.slice(0, 5).map((e, i) => (
-              <li key={i} className="grid grid-cols-[5.5rem_1fr] items-baseline gap-4 py-5">
-                <span className="font-display text-2xl text-ink">{e.annee}</span>
-                <span className="text-ink-soft">{e[langue]}</span>
-              </li>
-            ))}
-          </ol>
-        </Container>
+          <div className="hidden lg:col-span-2 lg:block">
+            <Image image={vueAccrochage} langue={langue} className="h-full" sizes="17vw" />
+          </div>
+        </div>
       </section>
 
       {/* ——— NFT : bande sombre. */}
-      <section className="apparait bg-night py-24 text-paper lg:py-32">
+      <section className="apparait border-t border-line bg-night py-20 text-paper lg:py-24">
         <Container className="grid items-center gap-12 lg:grid-cols-12">
-          <div className="mx-auto w-56 sm:w-72 lg:col-span-4 lg:w-full lg:max-w-[20rem]">
-            <Tondo oeuvre={visuelNft} langue={langue} tourne sizes="20rem" />
+          <div className="mx-auto w-48 sm:w-60 lg:col-span-3 lg:w-full lg:max-w-[16rem]">
+            <Tondo oeuvre={visuelNft} langue={langue} tourne sizes="16rem" />
           </div>
-          <div className="lg:col-span-7 lg:col-start-6">
-            <Eyebrow className="text-paper/60">{t.accueil.nftEyebrow}</Eyebrow>
-            <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl">{t.accueil.nftTitre}</h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75">{langue === 'fr' ? 'Une sélection de compositions est disponible sur OpenSea.' : 'A selection of compositions is available on OpenSea.'}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="lg:col-span-7 lg:col-start-5">
+            <Eyebrow className="text-paper/55">{t.accueil.nftEyebrow}</Eyebrow>
+            <h2 className="mt-5 text-3xl sm:text-4xl">{t.accueil.nftTitre}</h2>
+            <p className="mt-6 max-w-xl leading-relaxed text-paper/70">{t.accueil.nftTexte}</p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Bouton href={site.reseaux.opensea} target="_blank" rel="noopener noreferrer" variante="contourClair">
-                {t.boutons.voirOpenSea}
-                <span className="sr-only"> {t.nav.nouvelleFenetre}</span>
+                {t.boutons.voirOpenSea}<span className="sr-only"> {t.nav.nouvelleFenetre}</span>
               </Bouton>
-              <Bouton to={chemin('nft', langue)} variante="lien" className="text-paper decoration-paper/30 hover:decoration-paper">
-                {t.nav.nft}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Bouton>
+              <Link to={chemin('nft', langue)} className="eyebrow inline-flex items-center gap-3 text-paper/80 underline decoration-paper/30 underline-offset-[7px] hover:decoration-paper">
+                {t.nav.nft}<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </Container>
       </section>
 
       {/* ——— Contact. */}
-      <section className="apparait py-24 lg:py-32">
-        <Container className="text-center">
-          <TitreSection centre eyebrow={t.accueil.contactEyebrow} titre={t.accueil.contactTitre} description={t.accueil.contactTexte} />
-          <div className="mt-10 flex justify-center">
-            <Bouton to={chemin('contact', langue)}>
-              {t.boutons.ecrire}
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Bouton>
+      <section className="apparait py-20 lg:py-28">
+        <Container className="grid items-center gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <TitreSection eyebrow={t.accueil.contactEyebrow} titre={t.accueil.contactTitre} description={t.accueil.contactTexte} />
+            <Bouton to={chemin('contact', langue)} className="mt-10">{t.boutons.contacter}</Bouton>
+          </div>
+          <div className="grid grid-cols-2 gap-4 lg:col-span-5 lg:col-start-8">
+            {selection.slice(0, 2).map((o) => (
+              <Tondo key={o.src} oeuvre={o} langue={langue} mat sizes="20vw" />
+            ))}
           </div>
         </Container>
       </section>
+
+      <BandeauCitation texte={citations.contact[langue]} auteur={site.nom} />
     </>
   )
 }

@@ -6,7 +6,6 @@ import { writeFile, mkdir, copyFile, access } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { site } from '../src/data/site.js'
-import { series } from '../src/data/series.js'
 import { langues, slugs, pagesNonIndexees, chemin } from '../src/i18n/routes.js'
 
 const racine = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -14,30 +13,31 @@ const dist = join(racine, 'dist')
 
 // Pages indexables, avec leurs priorités. Les pages `noindex` (merci, légal)
 // et la 404 en sont exclues.
-const priorites = { accueil: '1.0', galerie: '0.9', biographie: '0.8', nft: '0.6', contact: '0.7' }
-const frequences = { accueil: 'monthly', galerie: 'monthly', biographie: 'yearly', nft: 'yearly', contact: 'yearly' }
+const priorites = { accueil: '1.0', galerie: '0.9', demarche: '0.8', biographie: '0.8', expositions: '0.8', nft: '0.6', contact: '0.7' }
+const frequences = { accueil: 'monthly', galerie: 'monthly', demarche: 'yearly', biographie: 'yearly', expositions: 'monthly', nft: 'yearly', contact: 'yearly' }
 
 // Une entrée par page ET par langue, chacune déclarant ses équivalents
 // (xhtml:link) : c'est ainsi que Google relie les deux versions.
 const entrees = []
 for (const cle of Object.keys(slugs)) {
   if (pagesNonIndexees.includes(cle)) continue
-  const suffixes = cle === 'galerie' ? [undefined, ...series.map((s) => s.cle)] : [undefined]
-  for (const suffixe of suffixes) {
-    for (const langue of langues) {
-      entrees.push({
-        chemin: chemin(cle, langue, suffixe),
-        priorite: suffixe ? '0.8' : priorites[cle],
-        frequence: frequences[cle],
-        alternates: langues.map((l) => [l, chemin(cle, l, suffixe)]),
-      })
-    }
+  for (const langue of langues) {
+    entrees.push({
+      chemin: chemin(cle, langue),
+      priorite: priorites[cle],
+      frequence: frequences[cle],
+      alternates: langues.map((l) => [l, chemin(cle, l)]),
+    })
   }
 }
 
-// Anciennes adresses à rediriger (aucune pour l'instant : le site Wix est sur
-// un autre domaine). Format : { '/ancienne': '/nouvelle' }.
-const redirections = {}
+// Anciennes adresses à rediriger. Format : { '/ancienne': '/nouvelle' }.
+// Les pages par série ont existé quelques jours (septembre 2026) : la
+// galerie affiche désormais toutes les œuvres, avec des filtres.
+const redirections = {
+  '/galerie/composition': '/galerie',
+  '/en/gallery/composition': '/en/gallery',
+}
 
 const existe = async (p) => access(p).then(() => true, () => false)
 

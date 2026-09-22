@@ -2,15 +2,15 @@ import { ViteReactSSG } from 'vite-react-ssg'
 import Layout from './components/Layout'
 import Accueil from './pages/Accueil'
 import Oeuvres from './pages/Oeuvres'
-import Serie from './pages/Serie'
+import Demarche from './pages/Demarche'
 import Biographie from './pages/Biographie'
+import Expositions from './pages/Expositions'
 import Nft from './pages/Nft'
 import Contact from './pages/Contact'
 import Merci from './pages/Merci'
 import MentionsLegales from './pages/MentionsLegales'
 import Confidentialite from './pages/Confidentialite'
 import NonTrouvee from './pages/NonTrouvee'
-import { series } from './data/series'
 import { langues, chemin } from './i18n/routes'
 import './styles/index.css'
 
@@ -24,11 +24,9 @@ const pagesDe = (langue) => [
     ? { index: true, element: <Accueil langue={langue} /> }
     : { path: relatif(chemin('accueil', langue)), element: <Accueil langue={langue} /> },
   { path: relatif(chemin('galerie', langue)), element: <Oeuvres langue={langue} /> },
-  ...series.map((s) => ({
-    path: relatif(chemin('galerie', langue, s.cle)),
-    element: <Serie langue={langue} cle={s.cle} />,
-  })),
+  { path: relatif(chemin('demarche', langue)), element: <Demarche langue={langue} /> },
   { path: relatif(chemin('biographie', langue)), element: <Biographie langue={langue} /> },
+  { path: relatif(chemin('expositions', langue)), element: <Expositions langue={langue} /> },
   { path: relatif(chemin('nft', langue)), element: <Nft langue={langue} /> },
   { path: relatif(chemin('contact', langue)), element: <Contact langue={langue} /> },
   { path: relatif(chemin('merci', langue)), element: <Merci langue={langue} /> },

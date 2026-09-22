@@ -36,7 +36,15 @@ politique de confidentialité l'explique.
 
 ## Le parti pris graphique
 
-Les toiles de Sarah sont **rondes**. Tout le site en découle :
+Le design suit les maquettes fournies par Sarah (septembre 2026) : papier
+clair, titres serif en capitales espacées (Cormorant Garamond), boutons
+filaires, toiles posées sur un carré gris, portrait en noir et blanc,
+bandeaux noirs de citation. Les photos des maquettes (générées par IA) ont
+été remplacées par ses vraies œuvres, son portrait, des détails recadrés dans
+ses toiles (`public/assets/picture/details/`) et la vue d'accrochage de son
+ancien site.
+
+Les toiles de Sarah sont **rondes**. Le site en tire parti :
 
 - chaque œuvre est un AVIF carré à fond transparent, découpé en cercle par
   `scripts/detourer-tondos.mjs` ; le site peut la poser sur n'importe quel fond ;
@@ -67,6 +75,7 @@ les contenus traduits (biographie, séries) portent des champs `{ fr, en }`.
 | Adresse du site, e-mail, réseaux, éditrice (mentions légales) | `src/data/site.js` |
 | Textes de l'interface (menu, boutons, formulaire) | `src/i18n/textes.js` |
 | Biographie, démarche, expositions | `src/data/biographie.js` |
+| Citations des encadrés, sélection de l'accueil, images d'ambiance | `src/data/site.js` |
 | Œuvres et séries | `src/data/series.js` |
 | Page NFT | `src/data/nft.js` |
 | Couleurs et typographies | `src/styles/index.css` (bloc `@theme`) |

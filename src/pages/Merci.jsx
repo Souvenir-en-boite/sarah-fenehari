@@ -15,7 +15,7 @@ export default function Merci({ langue }) {
         chapo={t.merci.chapo}
         actions={
           <>
-            <Bouton to={chemin('galerie', langue)}>{t.boutons.voirGalerie}</Bouton>
+            <Bouton to={chemin('galerie', langue)}>{t.boutons.toutesOeuvres}</Bouton>
             <Bouton to={chemin('accueil', langue)} variante="contour">{t.boutons.retourAccueil}</Bouton>
           </>
         }

@@ -6,13 +6,13 @@ export const paletteDe = (src) => couleurs[src]?.palette ?? [teinteDe(src)]
 
 /**
  * Une toile ronde. L'image est un AVIF carré à fond transparent : le cercle,
- * c'est l'image elle-même. Le composant ajoute le halo de sa couleur
- * dominante et, en option, la dérive lente (une rotation en trois minutes).
+ * c'est l'image elle-même. Options : `mat` pose la toile dans un carré gris
+ * clair (les cartes des maquettes), `tourne` la fait dériver lentement.
  */
-export function Tondo({ oeuvre, langue, className = '', style, priorite = false, tourne = false, sizes }) {
+export function Tondo({ oeuvre, langue, className = '', style, priorite = false, tourne = false, mat = false, sizes }) {
   const alt = typeof oeuvre.alt === 'string' ? oeuvre.alt : oeuvre.alt[langue]
-  return (
-    <span className={`tondo block ${className}`} style={{ '--teinte': teinteDe(oeuvre.src), ...style }}>
+  const image = (
+    <span className="tondo block" style={{ '--teinte': teinteDe(oeuvre.src) }}>
       <img
         src={oeuvre.src}
         alt={alt}
@@ -20,10 +20,14 @@ export function Tondo({ oeuvre, langue, className = '', style, priorite = false,
         height={oeuvre.height}
         sizes={sizes}
         loading={priorite ? 'eager' : 'lazy'}
-        fetchpriority={priorite ? "high" : undefined}
+        fetchpriority={priorite ? 'high' : undefined}
         decoding="async"
         className={`block h-auto w-full rounded-full ${tourne ? 'motion-safe:animate-derive' : ''}`}
       />
     </span>
   )
+  if (mat) {
+    return <span className={`mat block ${className}`} style={style}>{image}</span>
+  }
+  return <span className={`block ${className}`} style={style}>{image}</span>
 }

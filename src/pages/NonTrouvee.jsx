@@ -20,7 +20,7 @@ export default function NonTrouvee() {
         actions={
           <>
             <Bouton to={chemin('accueil', langue)}>{t.boutons.retourAccueil}</Bouton>
-            <Bouton to={chemin('galerie', langue)} variante="contour">{t.boutons.voirGalerie}</Bouton>
+            <Bouton to={chemin('galerie', langue)} variante="contour">{t.boutons.toutesOeuvres}</Bouton>
           </>
         }
       >

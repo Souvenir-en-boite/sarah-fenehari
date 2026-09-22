@@ -13,18 +13,3 @@ export const IconX = (p) => (
     <path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.4L17.8 20Z" />
   </svg>
 )
-
-/** La marque : un tondo miniature, blanc au centre, cobalt au bord. */
-export const Marque = ({ className = '' }) => (
-  <svg viewBox="0 0 48 48" className={className} aria-hidden="true" focusable="false">
-    <defs>
-      <radialGradient id="marque" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stopColor="#f5f2ec" />
-        <stop offset="0.35" stopColor="#f5f2ec" />
-        <stop offset="0.7" stopColor="#4b5fd6" />
-        <stop offset="1" stopColor="#17161a" />
-      </radialGradient>
-    </defs>
-    <circle cx="24" cy="24" r="22" fill="url(#marque)" />
-  </svg>
-)
