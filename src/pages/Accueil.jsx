@@ -30,7 +30,7 @@ export default function Accueil({ langue }) {
         <Container className="relative grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 lg:grid-cols-12 lg:gap-6 lg:py-0">
           <div className="relative z-10 lg:col-span-5 lg:py-24">
             <Eyebrow>{t.accueil.eyebrow}</Eyebrow>
-            <h1 className="mt-6 text-5xl sm:text-6xl lg:text-[4.5rem] xl:text-[5rem]">{t.accueil.titre}</h1>
+            <h1 className="mt-6 text-[2.4rem] sm:text-6xl lg:text-[4.5rem] xl:text-[5rem]">{t.accueil.titre}</h1>
             <p className="mt-7 max-w-md leading-relaxed text-ink-soft">{t.accueil.texte}</p>
             <Bouton to={chemin('galerie', langue)} className="mt-10">{t.boutons.decouvrir}</Bouton>
           </div>
