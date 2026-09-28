@@ -65,10 +65,13 @@ export function EncadreCitation({ texte, auteur, className = '' }) {
   )
 }
 
-/** Bandeau noir de citation, centré, pour clore une page. */
+/**
+ * Bandeau noir de citation, centré, pour clore une page. Il s'enchaîne
+ * directement avec le pied de page : `-mb-28` annule la marge de ce dernier.
+ */
 export function BandeauCitation({ texte, auteur }) {
   return (
-    <section className="bg-night px-6 py-16 text-center text-paper sm:py-20">
+    <section className="-mb-28 bg-night px-6 py-16 text-center text-paper sm:py-20">
       <blockquote className="mx-auto max-w-3xl">
         <p className="citation text-2xl sm:text-3xl">« {texte} »</p>
         {auteur && <footer className="eyebrow mt-7 text-paper/60">{auteur}</footer>}

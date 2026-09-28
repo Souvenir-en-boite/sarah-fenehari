@@ -42,6 +42,7 @@ export const textes = {
       retourAccueil: "Retour à l'accueil",
       voirOpenSea: 'Voir la collection sur OpenSea',
       lireBiographie: 'Lire la biographie',
+      decouvrirDemarche: 'Découvrir ma démarche',
     },
 
     piedDePage: {
@@ -58,16 +59,16 @@ export const textes = {
     accueil: {
       eyebrow: 'Artiste peintre',
       titre: ['Sarah', 'Fenehari'],
-      accroche: "Une exploration de la matière, de la couleur et de la lumière, pour révéler l'essentiel.",
+      sousTitre: 'Tondos abstraits',
+      // Une ligne par entrée, comme sur la maquette.
+      accroche: ['La couleur comme matière.', 'La lumière comme expérience.'],
       texte:
         "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
-      defiler: 'Défiler',
       metaDescription:
         'Sarah Fenehari, artiste peintre en Seine-et-Marne. Compositions : des tondos abstraits où la couleur devient matière vivante. Œuvres, démarche, expositions.',
-      legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylique sur toile, Ø ${o.cm} cm.`,
-      selectionEyebrow: "Sélection d'œuvres",
-      demarcheEyebrow: 'Démarche',
-      demarcheTitre: 'Une démarche artistique',
+      selectionEyebrow: 'Œuvres',
+      selectionTitre: 'Une recherche autour de la couleur, de la matière et de la lumière.',
+      demarcheTitre: "La couleur n'illustre rien. Elle se vit.",
       expositionsEyebrow: 'Expositions',
       accrochageLegende: 'Vue d’accrochage',
       nftEyebrow: 'Œuvres numériques',
@@ -225,6 +226,7 @@ export const textes = {
       retourAccueil: 'Back to home',
       voirOpenSea: 'View the collection on OpenSea',
       lireBiographie: 'Read the biography',
+      decouvrirDemarche: 'Discover my approach',
     },
 
     piedDePage: {
@@ -241,15 +243,14 @@ export const textes = {
     accueil: {
       eyebrow: 'Painter',
       titre: ['Sarah', 'Fenehari'],
-      accroche: 'An exploration of matter, colour and light, to reveal the essential.',
+      sousTitre: 'Abstract tondos',
+      accroche: ['Colour as matter.', 'Light as experience.'],
       texte: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
-      defiler: 'Scroll',
       metaDescription:
         'Sarah Fenehari, painter based near Paris. Compositions: abstract tondos where colour becomes a living substance. Works, approach, exhibitions.',
-      legendeHero: (o) => `${o.titre}, ${o.annee}. Acrylic on canvas, Ø ${o.cm} cm.`,
-      selectionEyebrow: 'Selected works',
-      demarcheEyebrow: 'Approach',
-      demarcheTitre: 'An artistic approach',
+      selectionEyebrow: 'Works',
+      selectionTitre: 'An exploration of colour, matter and light.',
+      demarcheTitre: 'Colour illustrates nothing. It is lived.',
       expositionsEyebrow: 'Exhibitions',
       accrochageLegende: 'Installation view',
       nftEyebrow: 'Digital works',

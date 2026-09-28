@@ -11,16 +11,21 @@ const FORMATS = {
   petits: (cm) => cm < 50,
 }
 
-function Filtre({ actif, onClick, children, count }) {
+/**
+ * Bouton de filtre. `lien` : libellé souligné quand il est actif (grand
+ * écran). `puce` : encadré filaire, plein quand il est actif (téléphone).
+ */
+function Filtre({ actif, onClick, children, count, variante = 'lien', className = '' }) {
+  const classes =
+    variante === 'puce'
+      ? `eyebrow shrink-0 whitespace-nowrap border px-4 py-2.5 transition-colors ${actif ? 'border-ink bg-ink text-paper' : 'border-line text-ink-soft hover:border-ink hover:text-ink'}`
+      : `eyebrow relative py-2 transition-colors ${actif ? 'text-ink' : 'text-ink-soft hover:text-ink'} after:absolute after:left-0 after:right-0 after:-bottom-px after:h-px after:bg-ink after:transition-transform ${actif ? 'after:scale-x-100' : 'after:scale-x-0'}`
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={actif}
-      className={`eyebrow relative py-2 transition-colors ${actif ? 'text-ink' : 'text-ink-soft hover:text-ink'} after:absolute after:left-0 after:right-0 after:-bottom-px after:h-px after:bg-ink after:transition-transform ${actif ? 'after:scale-x-100' : 'after:scale-x-0'}`}
-    >
+    <button type="button" onClick={onClick} aria-pressed={actif} className={`${classes} ${className}`}>
       {children}
-      {count !== undefined && <span className="ml-1.5 text-[0.6rem] tracking-normal text-ink-soft">{count}</span>}
+      {count !== undefined && (
+        <span className={`ml-1.5 text-[0.6rem] tracking-normal ${variante === 'puce' && actif ? 'text-paper/70' : 'text-ink-soft'}`}>{count}</span>
+      )}
     </button>
   )
 }
@@ -43,12 +48,48 @@ export function Galerie({ oeuvres }) {
   )
   const compter = (f) => oeuvres.filter((o) => (f === 'toutes' || FORMATS[f](o.cm)) && (annee === 'toutes' || o.annee === annee)).length
 
+  const formats = [['toutes', t.galerie.toutes], ['grands', t.galerie.grandsFormats], ['moyens', t.galerie.moyensFormats], ['petits', t.galerie.petitsFormats]]
+  const libelleAnnee = langue === 'fr' ? 'Année' : 'Year'
+  const selectAnnee = (
+    <select
+      value={annee}
+      onChange={(e) => setAnnee(e.target.value === 'toutes' ? 'toutes' : Number(e.target.value))}
+      className="eyebrow cursor-pointer border-b border-line bg-transparent py-1 pr-6 text-ink outline-none hover:border-ink focus:border-ink"
+    >
+      <option value="toutes">{t.galerie.toutes}</option>
+      {annees.map((a) => <option key={a} value={a}>{a}</option>)}
+    </select>
+  )
+
   return (
     <>
+      {/* Barre de filtres. Sur téléphone : une rangée de puces qui défile
+          horizontalement jusqu'aux bords de l'écran, l'année, puis le mode
+          d'affichage en pleine largeur. Sur grand écran : tout tient sur une ligne. */}
       <div className="border-y border-line py-4">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="lg:hidden">
+          <div
+            role="group"
+            aria-label={t.galerie.filtreLibelle}
+            className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
+          >
+            {formats.map(([cle, libelle]) => (
+              <Filtre key={cle} variante="puce" actif={format === cle} onClick={() => setFormat(cle)} count={compter(cle)}>{libelle}</Filtre>
+            ))}
+          </div>
+          <label className="mt-4 flex items-center gap-3">
+            <span className="eyebrow text-ink-soft">{libelleAnnee}</span>
+            {selectAnnee}
+          </label>
+          <div role="group" aria-label={t.galerie.modeLibelle} className="mt-4 grid grid-cols-2 border border-line">
+            <Filtre variante="puce" actif={mode === 'grille'} onClick={() => setMode('grille')} className="border-0 text-center">{t.galerie.modeGrille}</Filtre>
+            <Filtre variante="puce" actif={mode === 'echelle'} onClick={() => setMode('echelle')} className="border-0 border-l border-line text-center">{t.galerie.modeEchelle}</Filtre>
+          </div>
+        </div>
+
+        <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-6">
           <div role="group" aria-label={t.galerie.filtreLibelle} className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            {[['toutes', t.galerie.toutes], ['grands', t.galerie.grandsFormats], ['moyens', t.galerie.moyensFormats], ['petits', t.galerie.petitsFormats]].map(([cle, libelle], i) => (
+            {formats.map(([cle, libelle], i) => (
               <span key={cle} className="flex items-center gap-6">
                 {i > 0 && <span aria-hidden="true" className="text-line">/</span>}
                 <Filtre actif={format === cle} onClick={() => setFormat(cle)} count={compter(cle)}>{libelle}</Filtre>
@@ -57,15 +98,8 @@ export function Galerie({ oeuvres }) {
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <label className="flex items-center gap-3">
-              <span className="eyebrow text-ink-soft">{langue === 'fr' ? 'Année' : 'Year'}</span>
-              <select
-                value={annee}
-                onChange={(e) => setAnnee(e.target.value === 'toutes' ? 'toutes' : Number(e.target.value))}
-                className="eyebrow cursor-pointer border-b border-line bg-transparent py-1 pr-6 text-ink outline-none hover:border-ink focus:border-ink"
-              >
-                <option value="toutes">{t.galerie.toutes}</option>
-                {annees.map((a) => <option key={a} value={a}>{a}</option>)}
-              </select>
+              <span className="eyebrow text-ink-soft">{libelleAnnee}</span>
+              {selectAnnee}
             </label>
             <div role="group" aria-label={t.galerie.modeLibelle} className="flex items-center gap-4 border-l border-line pl-6">
               <Filtre actif={mode === 'grille'} onClick={() => setMode('grille')}>{t.galerie.modeGrille}</Filtre>

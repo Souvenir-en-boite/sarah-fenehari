@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X, Instagram } from 'lucide-react'
 import { Container } from './ui'
-import { IconX } from './icons'
 import { navigation, reseauxEnTete, site } from '../data/site'
 import { useLangue } from '../i18n/LangueContext'
 import { chemin, resoudre } from '../i18n/routes'
@@ -14,8 +13,8 @@ export function cheminAutreLangue(pathname, autre) {
   return chemin(page.cle, autre, page.suffixe)
 }
 
-const icones = { instagram: Instagram, x: IconX }
-const libelles = { instagram: 'Instagram', x: 'X' }
+const icones = { instagram: Instagram }
+const libelles = { instagram: 'Instagram' }
 
 function Wordmark({ langue, t, className = '' }) {
   return (

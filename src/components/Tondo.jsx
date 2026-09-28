@@ -7,12 +7,12 @@ export const paletteDe = (src) => couleurs[src]?.palette ?? [teinteDe(src)]
 /**
  * Une toile ronde. L'image est un AVIF carré à fond transparent : le cercle,
  * c'est l'image elle-même. Options : `mat` pose la toile dans un carré gris
- * clair (les cartes des maquettes), `tourne` la fait dériver lentement.
+ * clair (les cartes des maquettes), `ombre` la décolle du mur d'une ombre portée.
  */
-export function Tondo({ oeuvre, langue, className = '', style, priorite = false, tourne = false, mat = false, sizes }) {
+export function Tondo({ oeuvre, langue, className = '', style, priorite = false, mat = false, ombre = false, sizes }) {
   const alt = typeof oeuvre.alt === 'string' ? oeuvre.alt : oeuvre.alt[langue]
   const image = (
-    <span className="tondo block" style={{ '--teinte': teinteDe(oeuvre.src) }}>
+    <span className={`tondo block ${ombre ? 'tondo-ombre' : ''}`} style={{ '--teinte': teinteDe(oeuvre.src) }}>
       <img
         src={oeuvre.src}
         alt={alt}
@@ -22,7 +22,7 @@ export function Tondo({ oeuvre, langue, className = '', style, priorite = false,
         loading={priorite ? 'eager' : 'lazy'}
         fetchpriority={priorite ? 'high' : undefined}
         decoding="async"
-        className={`block h-auto w-full rounded-full ${tourne ? 'motion-safe:animate-derive' : ''}`}
+        className="block h-auto w-full rounded-full"
       />
     </span>
   )

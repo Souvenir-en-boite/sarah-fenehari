@@ -30,7 +30,6 @@ export const site = {
     opensea: 'https://opensea.io/Sarah-NFTs',
     instagram: 'https://www.instagram.com/sarah.fenehari/',
     facebook: 'https://www.facebook.com/sarahfenehari/',
-    x: 'https://twitter.com/FenehariS',
   },
 }
 
@@ -59,13 +58,22 @@ export const hebergeur = {
 export const navigation = ['galerie', 'demarche', 'biographie', 'expositions', 'nft', 'contact']
 
 // Réseaux affichés en icône dans l'en-tête (les autres restent en pied de page).
-export const reseauxEnTete = ['instagram', 'x']
+export const reseauxEnTete = ['instagram']
 
-// Œuvre qui ouvre l'accueil (numéro dans la série Composition).
+// Ouverture de l'accueil, d'après le bandeau fourni par Sarah (septembre
+// 2026) : une toile coupée par le bord droit de la page, sur un fond flou.
+// Le fond est le sien (la partie floue de son bandeau, sans la toile) ; la
+// toile est une vraie image de la galerie, posée dessus, pour rester nette
+// sur les grands écrans.
 export const oeuvreAccueil = '80'
+export const fondAccueil = { src: '/assets/picture/accueil/fond.avif', width: 1600, height: 797 }
 
-// Sélection d'œuvres de l'accueil, de gauche à droite.
-export const oeuvresSelection = ['81', '79', '76', '72']
+// Deux toiles qui ouvrent la page Démarche, comme le bloc contact de l'accueil.
+export const oeuvresDemarche = ['80', '77']
+
+// Sélection d'œuvres de l'accueil, de gauche à droite. Elles sont affichées
+// à l'échelle : grande, moyenne, petite, moyenne, comme sur la maquette.
+export const oeuvresSelection = ['76', '79', '81', '72']
 
 // Œuvres alignées « à l'échelle » (image de partage par défaut).
 export const oeuvresEchelleAccueil = ['81', '79', '80', '76', '72', '75']

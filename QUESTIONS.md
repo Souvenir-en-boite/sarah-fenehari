@@ -44,8 +44,8 @@ Ce qu'il faut savoir avant la mise en ligne. Les réponses vont dans
    d'exposition à montrer ?
 9. **NFT.** La page renvoie vers `opensea.io/Sarah-NFTs`. La collection est-elle
    toujours active ? Garde-t-on cette page dans le menu ?
-10. **Réseaux.** Instagram, Facebook, X et OpenSea sont repris du Wix. Toujours
-    à jour ? (Le compte X est encore sous l'adresse twitter.com.)
+10. **Réseaux.** Instagram, Facebook et OpenSea sont repris du Wix. Toujours
+    à jour ? (Le compte X, inactif depuis 2024, a été retiré.)
 
 ## Choix graphiques à valider
 

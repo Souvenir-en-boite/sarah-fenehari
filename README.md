@@ -55,10 +55,17 @@ Les toiles de Sarah sont **rondes**. Le site en tire parti :
   « spectre » du pied de page — une bande où chaque segment est une toile ;
 - la galerie a deux affichages : la grille, et **à l'échelle**, où chaque toile
   a la taille de son diamètre réel (de 20 à 100 cm), alignées à hauteur de
-  regard comme sur un mur d'exposition ;
-- les tondos de l'accueil et de la page NFT tournent sur eux-mêmes, une
-  révolution en trois minutes — désactivé si le système demande de réduire
-  les animations.
+  regard comme sur un mur d'exposition ; la sélection de l'accueil reprend
+  ce principe ;
+- les toiles ne bougent pas : la rotation lente des tondos a été retirée à la
+  demande de Sarah (septembre 2026).
+
+L'accueil s'ouvre d'après le bandeau fourni par Sarah : son fond flou
+(`public/assets/picture/accueil/fond.avif`, la partie sans toile de son
+image) et, posée dessus, une vraie toile de la galerie coupée par le bord
+droit de la page (`oeuvreAccueil` dans `src/data/site.js`). Le fond, flou,
+supporte n'importe quel agrandissement ; la toile reste nette. Sur téléphone,
+le visuel passe au-dessus du texte.
 
 ## Bilingue
 
@@ -87,7 +94,12 @@ les contenus traduits (biographie, séries) portent des champs `{ fr, en }`.
    node scripts/detourer-tondos.mjs ~/Downloads/composition-82.jpg --sortie public/assets/picture/composition
    ```
    Le script rogne le fond, recadre au carré et applique un masque circulaire.
-   Il attend une toile ronde photographiée sur fond clair.
+   Il attend une toile ronde photographiée sur fond clair. Si un liseré de
+   fond dépasse encore sur le bord (ombre, tranche de la toile), lancer
+   `node scripts/rogner-tondos.mjs --simuler` : il mesure le liseré de chaque
+   image et, sans `--simuler`, resserre le masque juste ce qu'il faut (les
+   options sont en tête du script ; la tranche grise de la Composition 43 a
+   demandé `--seulement composition-43 --seuil 120`).
 2. Ajouter une ligne `oeuvre('82', 2025, 80, 'Acrylique sur toile')` dans
    `src/data/series.js` (numéro, année, diamètre en cm, technique).
 3. `npm run couleurs` puis `npm run images-partage`.

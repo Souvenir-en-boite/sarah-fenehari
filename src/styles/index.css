@@ -31,12 +31,6 @@
 
   --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-sans: "Instrument Sans Variable", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-
-  /* Rotation lente des tondos : une révolution toutes les trois minutes. */
-  --animate-derive: derive 180s linear infinite;
-  @keyframes derive {
-    to { transform: rotate(1turn); }
-  }
 }
 
 @layer base {
@@ -152,10 +146,40 @@
     z-index: -1;
     transition: opacity 600ms ease, transform 600ms ease;
   }
+  /*
+   * Toile du bandeau de l'accueil, d'après le bandeau de Sarah : la toile
+   * s'enfonce dans le noir vers la droite, vers l'extérieur de la page. Le
+   * centre reste intact, la partie qui sort du cadre est presque noire. Un
+   * léger assombrissement des bords et une ombre discrète complètent l'effet.
+   */
+  .tondo-ombre::before {
+    display: none;
+  }
+  .tondo-ombre img {
+    filter: drop-shadow(-8px 12px 24px rgb(35 25 15 / 0.22));
+  }
+  .tondo-ombre::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      linear-gradient(97deg, transparent 30%, rgb(10 6 4 / 0.3) 46%, rgb(10 6 4 / 0.8) 62%, rgb(10 6 4 / 0.96) 74%),
+      radial-gradient(circle at 42% 48%, transparent 62%, rgb(10 6 4 / 0.3) 100%);
+  }
   .group:hover .tondo::before,
   .group:focus-within .tondo::before {
     opacity: 0.4;
     transform: scale(1.06);
+  }
+
+  /* Sélection de l'accueil « à l'échelle » : la largeur d'une toile, c'est son
+     diamètre en centimètres multiplié par cette valeur. Plus serré à côté du
+     texte (grand écran) que sur toute la largeur (téléphone). */
+  .selection-echelle { --px-par-cm: clamp(1.9px, 0.5vw, 3.6px); }
+  @media (min-width: 1024px) {
+    .selection-echelle { --px-par-cm: clamp(2px, 0.2vw, 3.6px); }
   }
 
   /* Carré de présentation : le fond gris clair des maquettes, la toile posée dedans. */

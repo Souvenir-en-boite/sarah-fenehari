@@ -26,7 +26,7 @@ export default function Nft({ langue }) {
           <p className="mt-8 max-w-lg text-xs leading-relaxed text-ink-soft">{t.nft.note}</p>
         </div>
         <div className="mx-auto w-full max-w-sm lg:col-span-5 lg:col-start-8 lg:max-w-none">
-          <Tondo oeuvre={visuelNft} langue={langue} priorite tourne mat sizes="(min-width: 1024px) 30rem, 80vw" />
+          <Tondo oeuvre={visuelNft} langue={langue} priorite mat sizes="(min-width: 1024px) 30rem, 80vw" />
         </div>
       </Container>
     </>

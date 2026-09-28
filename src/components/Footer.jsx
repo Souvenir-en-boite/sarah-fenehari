@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook } from 'lucide-react'
 import { Container } from './ui'
-import { IconOpenSea, IconX } from './icons'
+import { IconOpenSea } from './icons'
 import { teinteDe } from './Tondo'
 import { navigation, site } from '../data/site'
 import { series } from '../data/series'
@@ -30,7 +30,6 @@ export function SpectreCollection({ className = '' }) {
 export const reseauxListe = [
   { cle: 'instagram', libelle: 'Instagram', Icon: Instagram },
   { cle: 'facebook', libelle: 'Facebook', Icon: Facebook },
-  { cle: 'x', libelle: 'X', Icon: IconX },
   { cle: 'opensea', libelle: 'OpenSea', Icon: IconOpenSea },
 ]
 
