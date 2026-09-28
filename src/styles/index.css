@@ -174,14 +174,6 @@
     transform: scale(1.06);
   }
 
-  /* Sélection de l'accueil « à l'échelle » : la largeur d'une toile, c'est son
-     diamètre en centimètres multiplié par cette valeur. Plus serré à côté du
-     texte (grand écran) que sur toute la largeur (téléphone). */
-  .selection-echelle { --px-par-cm: clamp(1.9px, 0.5vw, 3.6px); }
-  @media (min-width: 1024px) {
-    .selection-echelle { --px-par-cm: clamp(2px, 0.2vw, 3.6px); }
-  }
-
   /* Carré de présentation : le fond gris clair des maquettes, la toile posée dedans. */
   .mat {
     background: var(--color-paper-mat);

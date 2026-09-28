@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { Seo, DonneesStructurees } from '../components/Seo'
 import { Container, Bouton, Eyebrow, TitreSection, Image, BandeauCitation } from '../components/ui'
 import { Tondo } from '../components/Tondo'
-import { Cartel } from '../components/CarteOeuvre'
+import { CarteOeuvre } from '../components/CarteOeuvre'
 import { useApparition } from '../components/useApparition'
 import { series } from '../data/series'
 import { biographie, expositions } from '../data/biographie'
@@ -50,7 +50,6 @@ export default function Accueil({ langue }) {
             <h1 className="mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[clamp(3.5rem,6vw,5.25rem)]">
               {t.accueil.titre.map((mot) => <span key={mot} className="block">{mot}</span>)}
             </h1>
-            <p className="citation mt-4 text-2xl text-ink-soft sm:text-3xl">{t.accueil.sousTitre}</p>
             <p className="mt-8 text-sm leading-relaxed text-ink sm:text-base">
               {t.accueil.accroche.map((ligne) => <span key={ligne} className="block">{ligne}</span>)}
             </p>
@@ -59,28 +58,26 @@ export default function Accueil({ langue }) {
         </Container>
       </section>
 
-      {/* ——— Œuvres : une phrase à gauche, quatre toiles à l'échelle à droite,
-             posées sur le papier, avec leur cartel. */}
-      <section id="selection" className="apparait py-20 lg:py-28">
-        <Container className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-10">
-          <div className="lg:col-span-3 xl:col-span-4">
+      {/* ——— Sélection d'œuvres : quatre cartes. */}
+      <section id="selection" className="apparait py-20 lg:py-24">
+        <Container>
+          <div className="flex items-end justify-between gap-6">
             <Eyebrow filet>{t.accueil.selectionEyebrow}</Eyebrow>
-            <h2 className="citation mt-8 max-w-sm text-3xl text-ink sm:text-[2.5rem]">{t.accueil.selectionTitre}</h2>
-            <Bouton to={chemin('galerie', langue)} variante="lien" className="mt-10 whitespace-nowrap">{t.boutons.toutesOeuvres}</Bouton>
+            <Bouton to={chemin('galerie', langue)} variante="lien" className="hidden sm:inline-flex">{t.boutons.toutesOeuvres}</Bouton>
           </div>
-          <ul className="selection-echelle flex flex-wrap items-center justify-center gap-x-8 gap-y-12 lg:col-span-9 lg:justify-between lg:gap-x-4 xl:col-span-8">
+          <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-10">
             {selection.map((o, i) => (
               <li key={o.src}>
-                <Link to={chemin('galerie', langue)} className="group flex flex-col items-center text-center">
-                  <span className="block" style={{ width: `calc(${o.cm} * var(--px-par-cm))` }}>
-                    <Tondo oeuvre={o} langue={langue} priorite={i < 2} sizes="(min-width: 1024px) 300px, 45vw" className="transition-transform duration-500 group-hover:scale-[1.03]" />
-                  </span>
-                  <Cartel oeuvre={o} langue={langue} t={t} className="mt-5 max-w-[9rem]" />
+                <Link to={chemin('galerie', langue)} className="group block">
+                  <CarteOeuvre oeuvre={o} langue={langue} t={t} priorite={i < 2} sizes="(min-width: 1024px) 22vw, 45vw" />
                   <span className="sr-only">{t.boutons.toutesOeuvres}</span>
                 </Link>
               </li>
             ))}
           </ul>
+          <div className="mt-10 sm:hidden">
+            <Bouton to={chemin('galerie', langue)} variante="lien">{t.boutons.toutesOeuvres}</Bouton>
+          </div>
         </Container>
       </section>
 

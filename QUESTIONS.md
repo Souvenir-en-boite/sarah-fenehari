@@ -7,9 +7,9 @@ Ce qu'il faut savoir avant la mise en ligne. Les réponses vont dans
 
 1. **Nom de domaine.** Lequel ? (`sarahfenehari.fr`, `.com`, `.art`…) Est-il
    déjà acheté, et chez qui ? → `site.url`
-2. **Adresse e-mail de contact.** Celle qui recevra les messages du formulaire
-   et qui sera affichée sur la page contact et dans les mentions légales.
-   FormSubmit y enverra un e-mail d'activation au premier message. → `site.email`
+2. **Adresse e-mail de contact.** ✓ `fenehari@hotmail.com` (septembre 2026).
+   FormSubmit y enverra un e-mail d'activation au premier message envoyé
+   depuis le formulaire : il faut cliquer le lien pour recevoir les suivants.
 3. **Mentions légales.** Statut (artiste-auteure ? entrepreneuse individuelle ?),
    adresse à afficher (domicile, atelier ou domiciliation), numéro
    d'identification (SIRET, ou numéro Urssaf artistes-auteurs / Maison des

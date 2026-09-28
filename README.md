@@ -55,8 +55,7 @@ Les toiles de Sarah sont **rondes**. Le site en tire parti :
   « spectre » du pied de page — une bande où chaque segment est une toile ;
 - la galerie a deux affichages : la grille, et **à l'échelle**, où chaque toile
   a la taille de son diamètre réel (de 20 à 100 cm), alignées à hauteur de
-  regard comme sur un mur d'exposition ; la sélection de l'accueil reprend
-  ce principe ;
+  regard comme sur un mur d'exposition ;
 - les toiles ne bougent pas : la rotation lente des tondos a été retirée à la
   demande de Sarah (septembre 2026).
 

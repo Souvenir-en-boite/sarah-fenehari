@@ -40,8 +40,8 @@ function oeuvre(numero, annee, cm, technique) {
     width: TAILLE,
     height: TAILLE,
     alt: {
-      fr: `${titre} (${annee}), tondo de ${cm} cm, ${technique.toLowerCase()}`,
-      en: `${titre} (${annee}), ${cm} cm tondo, ${(techniques[technique] ?? technique).toLowerCase()}`,
+      fr: `${titre} (${annee}), toile ronde de ${cm} cm, ${technique.toLowerCase()}`,
+      en: `${titre} (${annee}), ${cm} cm round canvas, ${(techniques[technique] ?? technique).toLowerCase()}`,
     },
   }
 }
@@ -51,7 +51,7 @@ export const series = [
     cle: 'composition',
     titre: { fr: 'Composition', en: 'Composition' },
     // Format commun à toute la série, affiché dans sa présentation.
-    format: { fr: 'Tondos, acrylique sur toile', en: 'Tondos, acrylic on canvas' },
+    format: { fr: 'Acrylique sur toile', en: 'Acrylic on canvas' },
     description: {
       fr: "Des toiles rondes où la couleur jaillit d'un centre, libérée de toute figuration. Chacun y projette ses propres formes, ou s'abandonne à l'expérience.",
       en: 'Round canvases where colour bursts from a centre, freed from all figuration. Each viewer projects their own shapes onto them, or surrenders to the experience.',

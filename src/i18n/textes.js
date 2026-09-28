@@ -59,15 +59,13 @@ export const textes = {
     accueil: {
       eyebrow: 'Artiste peintre',
       titre: ['Sarah', 'Fenehari'],
-      sousTitre: 'Tondos abstraits',
       // Une ligne par entrée, comme sur la maquette.
       accroche: ['La couleur comme matière.', 'La lumière comme expérience.'],
       texte:
         "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
       metaDescription:
-        'Sarah Fenehari, artiste peintre en Seine-et-Marne. Compositions : des tondos abstraits où la couleur devient matière vivante. Œuvres, démarche, expositions.',
-      selectionEyebrow: 'Œuvres',
-      selectionTitre: 'Une recherche autour de la couleur, de la matière et de la lumière.',
+        'Sarah Fenehari, artiste peintre en Seine-et-Marne. Compositions : des toiles abstraites où la couleur devient matière vivante. Œuvres, démarche, expositions.',
+      selectionEyebrow: "Sélection d'œuvres",
       demarcheTitre: "La couleur n'illustre rien. Elle se vit.",
       expositionsEyebrow: 'Expositions',
       accrochageLegende: 'Vue d’accrochage',
@@ -85,7 +83,7 @@ export const textes = {
       eyebrow: 'Galerie',
       chapo: "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
       metaDescription:
-        'Toutes les œuvres de Sarah Fenehari : la série Composition, des tondos abstraits en acrylique sur toile, de 20 à 100 cm.',
+        'Toutes les œuvres de Sarah Fenehari : la série Composition, des œuvres abstraites en acrylique sur toile, de 20 à 100 cm.',
       filtreLibelle: 'Filtrer les œuvres',
       toutes: 'Toutes',
       grandsFormats: 'Grands formats',
@@ -243,13 +241,11 @@ export const textes = {
     accueil: {
       eyebrow: 'Painter',
       titre: ['Sarah', 'Fenehari'],
-      sousTitre: 'Abstract tondos',
       accroche: ['Colour as matter.', 'Light as experience.'],
       texte: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
       metaDescription:
-        'Sarah Fenehari, painter based near Paris. Compositions: abstract tondos where colour becomes a living substance. Works, approach, exhibitions.',
-      selectionEyebrow: 'Works',
-      selectionTitre: 'An exploration of colour, matter and light.',
+        'Sarah Fenehari, painter based near Paris. Compositions: abstract paintings where colour becomes a living substance. Works, approach, exhibitions.',
+      selectionEyebrow: 'Selected works',
       demarcheTitre: 'Colour illustrates nothing. It is lived.',
       expositionsEyebrow: 'Exhibitions',
       accrochageLegende: 'Installation view',
@@ -267,7 +263,7 @@ export const textes = {
       eyebrow: 'Gallery',
       chapo: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
       metaDescription:
-        'All works by Sarah Fenehari: the Composition series, abstract tondos in acrylic on canvas, from 20 to 100 cm.',
+        'All works by Sarah Fenehari: the Composition series, abstract works in acrylic on canvas, from 20 to 100 cm.',
       filtreLibelle: 'Filter the works',
       toutes: 'All',
       grandsFormats: 'Large formats',

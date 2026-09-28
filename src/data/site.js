@@ -12,12 +12,13 @@ export const site = {
   // À CONFIRMER : l'adresse réelle du site. Elle sert aux liens canoniques,
   // aux balises hreflang, aux aperçus de partage et au plan du site.
   url: 'https://www.sarahfenehari.fr',
-  // À CONFIRMER : l'adresse qui recevra les messages du formulaire de contact.
-  // FormSubmit envoie un e-mail d'activation à cette adresse au premier envoi.
-  email: 'contact@sarahfenehari.fr',
+  // Adresse qui reçoit les messages du formulaire de contact (confirmée par
+  // Sarah, septembre 2026). FormSubmit y envoie un e-mail d'activation au
+  // premier envoi : il faut cliquer le lien reçu pour que les messages arrivent.
+  email: 'fenehari@hotmail.com',
   baseline: {
-    fr: 'Artiste peintre — tondos abstraits',
-    en: 'Painter — abstract tondos',
+    fr: 'Artiste peintre — œuvres abstraites',
+    en: 'Painter — abstract works',
   },
   // Localisation affichée sur la page contact (département, sans adresse).
   // À CONFIRMER avec Sarah.
@@ -28,7 +29,7 @@ export const site = {
   // Adresses relevées sur le site Wix actuel.
   reseaux: {
     opensea: 'https://opensea.io/Sarah-NFTs',
-    instagram: 'https://www.instagram.com/sarah.fenehari/',
+    instagram: 'https://www.instagram.com/sarah_fenehari/',
     facebook: 'https://www.facebook.com/sarahfenehari/',
   },
 }
@@ -68,12 +69,8 @@ export const reseauxEnTete = ['instagram']
 export const oeuvreAccueil = '80'
 export const fondAccueil = { src: '/assets/picture/accueil/fond.avif', width: 1600, height: 797 }
 
-// Deux toiles qui ouvrent la page Démarche, comme le bloc contact de l'accueil.
-export const oeuvresDemarche = ['80', '77']
-
-// Sélection d'œuvres de l'accueil, de gauche à droite. Elles sont affichées
-// à l'échelle : grande, moyenne, petite, moyenne, comme sur la maquette.
-export const oeuvresSelection = ['76', '79', '81', '72']
+// Sélection d'œuvres de l'accueil, de gauche à droite.
+export const oeuvresSelection = ['81', '79', '66', '41']
 
 // Œuvres alignées « à l'échelle » (image de partage par défaut).
 export const oeuvresEchelleAccueil = ['81', '79', '80', '76', '72', '75']
@@ -84,6 +81,10 @@ export const details = {
   80: { src: '/assets/picture/details/detail-80.avif', width: 1400, height: 1008, alt: { fr: 'Détail de Composition 80 : coulures turquoise et ocre', en: 'Detail of Composition 80: turquoise and ochre drips' } },
   66: { src: '/assets/picture/details/detail-66.avif', width: 1400, height: 1008, alt: { fr: 'Détail de Composition 66 : matière bleu nuit et éclats blancs', en: 'Detail of Composition 66: midnight-blue matter and white bursts' } },
   79: { src: '/assets/picture/details/detail-79.avif', width: 1400, height: 1008, alt: { fr: 'Détail de Composition 79 : pigments bleu profond', en: 'Detail of Composition 79: deep blue pigments' } },
+  // Recadrés dans les AVIF détourés, pour l'ouverture de la page Démarche : deux
+  // toiles vert-bleu, le cœur de l'une, le bord de l'autre (comme le duo bleu de Contact).
+  75: { src: '/assets/picture/details/detail-75.avif', width: 820, height: 590, alt: { fr: 'Détail de Composition 75 : rayonnement turquoise autour d’un cœur clair', en: 'Detail of Composition 75: turquoise rays around a pale heart' } },
+  57: { src: '/assets/picture/details/detail-57.avif', width: 600, height: 432, alt: { fr: 'Détail de Composition 57 : éclat blanc, bleu et jaune jusqu’au bord de la toile', en: 'Detail of Composition 57: white, blue and yellow burst up to the edge of the canvas' } },
 }
 
 // Vue d'accrochage (image de la galerie du site Wix).
@@ -92,8 +93,8 @@ export const vueAccrochage = {
   width: 1024,
   height: 718,
   alt: {
-    fr: 'Cinq tondos de Sarah Fenehari accrochés sur les murs blancs d’une galerie',
-    en: 'Five tondos by Sarah Fenehari hung on the white walls of a gallery',
+    fr: 'Cinq toiles rondes de Sarah Fenehari accrochées sur les murs blancs d’une galerie',
+    en: 'Five round canvases by Sarah Fenehari hung on the white walls of a gallery',
   },
 }
 
@@ -132,7 +133,7 @@ export const visuelNft = {
   width: 1200,
   height: 1200,
   alt: {
-    fr: 'Tondo orange, vert et blanc de la collection NFT de Sarah Fenehari',
-    en: 'Orange, green and white tondo from Sarah Fenehari’s NFT collection',
+    fr: 'Toile ronde orange, verte et blanche de la collection NFT de Sarah Fenehari',
+    en: 'Orange, green and white round canvas from Sarah Fenehari’s NFT collection',
   },
 }
