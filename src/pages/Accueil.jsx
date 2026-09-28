@@ -7,14 +7,14 @@ import { CarteOeuvre } from '../components/CarteOeuvre'
 import { useApparition } from '../components/useApparition'
 import { series } from '../data/series'
 import { biographie, expositions } from '../data/biographie'
-import { oeuvreAccueil, fondAccueil, oeuvresSelection, details, portrait, vueAccrochage, visuelNft, citations, site } from '../data/site'
+import { oeuvreAccueil, toileAccueil, fondAccueil, oeuvresSelection, details, portrait, vueAccrochage, visuelNft, citations, site } from '../data/site'
 import { textes } from '../i18n/textes'
 import { chemin } from '../i18n/routes'
 
 export default function Accueil({ langue }) {
   const t = textes[langue]
   const oeuvres = series.flatMap((s) => s.oeuvres)
-  const hero = oeuvres.find((o) => o.numero === oeuvreAccueil)
+  const hero = toileAccueil ?? (oeuvreAccueil && oeuvres.find((o) => o.numero === oeuvreAccueil))
   const selection = oeuvresSelection.map((n) => oeuvres.find((o) => o.numero === n))
   const bio = biographie[langue]
   useApparition()
@@ -24,10 +24,10 @@ export default function Accueil({ langue }) {
       <Seo langue={langue} cle="accueil" description={t.accueil.metaDescription} imageAlt={t.accueil.texte} />
       <DonneesStructurees langue={langue} />
 
-      {/* ——— Ouverture, d'après le bandeau de Sarah : son fond flou, et une toile
-             posée dessus, coupée par le bord droit de la page. Sur téléphone, le
-             visuel (4:3) passe au-dessus du texte. */}
-      <section className="relative overflow-hidden border-b border-line lg:flex lg:min-h-[max(34rem,30.6vw)] lg:items-center">
+      {/* ——— Ouverture : le bandeau de Sarah (fond flou, toile coupée par le bord
+             droit), et si `oeuvreAccueil` est renseignée, une toile de la galerie
+             posée dessus. Sur téléphone, le visuel (4:3) passe au-dessus du texte. */}
+      <section className="relative overflow-hidden border-b border-line lg:flex lg:min-h-[max(34rem,38vw)] lg:items-center">
         <div className="relative aspect-[4/3] overflow-hidden lg:absolute lg:inset-0 lg:aspect-auto">
           <img
             src={fondAccueil.src}
@@ -36,12 +36,15 @@ export default function Accueil({ langue }) {
             alt=""
             fetchpriority="high"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover opacity-65"
+            className="absolute inset-0 h-full w-full object-cover object-right"
           />
-          {/* La toile : un peu plus haute que le bandeau, calée sur le bord droit. */}
-          <div className="absolute right-[-22%] top-1/2 aspect-square h-[112%] -translate-y-1/2 lg:right-[-13%] lg:h-[115%]">
-            <Tondo oeuvre={hero} langue={langue} priorite ombre sizes="(min-width: 1024px) 40vw, 90vw" />
-          </div>
+          {/* La toile : un peu plus haute que le bandeau, calée sur le bord droit.
+              (`ombre` sur le Tondo ajoute l'assombrissement vers le bord et l'ombre portée.) */}
+          {hero && (
+            <div className="absolute right-[-22%] top-1/2 aspect-square h-[112%] -translate-y-1/2 lg:right-[-13%] lg:h-[115%]">
+              <Tondo oeuvre={hero} langue={langue} priorite sizes="(min-width: 1024px) 40vw, 90vw" />
+            </div>
+          )}
         </div>
 
         <Container className="relative py-12 sm:py-14 lg:py-16">
@@ -50,9 +53,6 @@ export default function Accueil({ langue }) {
             <h1 className="mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[clamp(3.5rem,6vw,5.25rem)]">
               {t.accueil.titre.map((mot) => <span key={mot} className="block">{mot}</span>)}
             </h1>
-            <p className="mt-8 text-sm leading-relaxed text-ink sm:text-base">
-              {t.accueil.accroche.map((ligne) => <span key={ligne} className="block">{ligne}</span>)}
-            </p>
             <Bouton to={chemin('galerie', langue)} className="mt-10">{t.boutons.decouvrir}</Bouton>
           </div>
         </Container>

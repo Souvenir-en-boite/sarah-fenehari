@@ -59,12 +59,13 @@ Les toiles de Sarah sont **rondes**. Le site en tire parti :
 - les toiles ne bougent pas : la rotation lente des tondos a été retirée à la
   demande de Sarah (septembre 2026).
 
-L'accueil s'ouvre d'après le bandeau fourni par Sarah : son fond flou
-(`public/assets/picture/accueil/fond.avif`, la partie sans toile de son
-image) et, posée dessus, une vraie toile de la galerie coupée par le bord
-droit de la page (`oeuvreAccueil` dans `src/data/site.js`). Le fond, flou,
-supporte n'importe quel agrandissement ; la toile reste nette. Sur téléphone,
-le visuel passe au-dessus du texte.
+L'accueil s'ouvre d'après le bandeau de Sarah : son fond flou
+(`public/assets/picture/accueil/fond.avif`) et, posée dessus, sa toile
+détourée (`toile.avif`, hors série) coupée par le bord droit de la page,
+nette à toutes les tailles (`toileAccueil` et `oeuvreAccueil` dans
+`src/data/site.js`). L'option `ombre` du
+composant Tondo ajoute l'assombrissement vers le bord et l'ombre portée. Sur
+téléphone, le visuel passe au-dessus du texte.
 
 ## Bilingue
 
@@ -123,7 +124,8 @@ sortie, désactive la détection de framework, et ajoute des en-têtes de
 sécurité et de cache. Le build produit aussi `sitemap.xml` (bilingue, avec
 alternates), `robots.txt`, `_redirects` (Netlify / Cloudflare) et `404.html`.
 
-> **Avant la première mise en ligne** : renseigner `site.url` et `site.email`
-> dans `src/data/site.js`, compléter `editeur` (mentions légales), et
-> régénérer les aperçus de partage. La liste des informations à demander à
+> **Avant la première mise en ligne** : compléter `editeur` (mentions
+> légales) dans `src/data/site.js` et régénérer les aperçus de partage.
+> L'adresse absolue du site suit le domaine de production Vercel
+> (`src/data/url-site.js`) ; `site.email` est renseigné. La liste des informations à demander à
 > Sarah est dans `QUESTIONS.md`.

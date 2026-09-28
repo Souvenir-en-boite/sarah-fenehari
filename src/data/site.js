@@ -5,20 +5,26 @@
 // Les valeurs marquées « À CONFIRMER » sont provisoires : la liste complète
 // des questions à poser à Sarah est dans QUESTIONS.md.
 
+import { urlDuSite } from './url-site.js'
+
+// Dans le navigateur, Vite remplace import.meta.env par les valeurs du build ;
+// dans les scripts Node, import.meta.env n'existe pas et on recalcule.
+const url = (import.meta.env ?? {}).VITE_URL_SITE ?? urlDuSite()
+
 export const site = {
   nom: 'Sarah Fenehari',
   prenom: 'Sarah',
   nomDeFamille: 'Fenehari',
-  // À CONFIRMER : l'adresse réelle du site. Elle sert aux liens canoniques,
-  // aux balises hreflang, aux aperçus de partage et au plan du site.
-  url: 'https://www.sarahfenehari.fr',
+  // Adresse absolue du site, calculée au build (voir url-site.js) : le
+  // domaine de production Vercel, ou URL_SITE quand le nom de domaine sera là.
+  url,
   // Adresse qui reçoit les messages du formulaire de contact (confirmée par
   // Sarah, septembre 2026). FormSubmit y envoie un e-mail d'activation au
   // premier envoi : il faut cliquer le lien reçu pour que les messages arrivent.
   email: 'fenehari@hotmail.com',
   baseline: {
-    fr: 'Artiste peintre — œuvres abstraites',
-    en: 'Painter — abstract works',
+    fr: 'Artiste peintre',
+    en: 'Painter',
   },
   // Localisation affichée sur la page contact (département, sans adresse).
   // À CONFIRMER avec Sarah.
@@ -61,13 +67,27 @@ export const navigation = ['galerie', 'demarche', 'biographie', 'expositions', '
 // Réseaux affichés en icône dans l'en-tête (les autres restent en pied de page).
 export const reseauxEnTete = ['instagram']
 
-// Ouverture de l'accueil, d'après le bandeau fourni par Sarah (septembre
-// 2026) : une toile coupée par le bord droit de la page, sur un fond flou.
-// Le fond est le sien (la partie floue de son bandeau, sans la toile) ; la
-// toile est une vraie image de la galerie, posée dessus, pour rester nette
-// sur les grands écrans.
-export const oeuvreAccueil = '80'
-export const fondAccueil = { src: '/assets/picture/accueil/fond.avif', width: 1600, height: 797 }
+// Ouverture de l'accueil, d'après le bandeau de Sarah (septembre 2026) : son
+// fond flou seul (fond.avif, l'image entière qu'elle a fournie sans la toile)
+// et, posée dessus, une toile coupée par le bord droit de la page — nette à
+// toutes les tailles, contrairement à une toile intégrée dans l'image du fond.
+//
+// La toile est `toileAccueil` : la photo qu'elle a envoyée pour le bandeau,
+// détourée comme celles de la galerie (scripts/detourer-tondos.mjs, 1024 px).
+// Elle ne fait pas partie de la série : pas de numéro, pas de cartel. Pour
+// utiliser une œuvre de la galerie à la place, mettre `toileAccueil` à null
+// et `oeuvreAccueil` au numéro voulu ; les deux à null : le fond seul.
+export const fondAccueil = { src: '/assets/picture/accueil/fond.avif', width: 1920, height: 766 }
+export const toileAccueil = {
+  src: '/assets/picture/accueil/toile.avif',
+  width: 1024,
+  height: 1024,
+  alt: {
+    fr: 'Toile ronde de Sarah Fenehari : cœur doré, éclats rouges et bleu turquoise',
+    en: 'Round canvas by Sarah Fenehari: golden heart, red bursts and turquoise blue',
+  },
+}
+export const oeuvreAccueil = null
 
 // Sélection d'œuvres de l'accueil, de gauche à droite.
 export const oeuvresSelection = ['81', '79', '66', '41']
@@ -83,8 +103,8 @@ export const details = {
   79: { src: '/assets/picture/details/detail-79.avif', width: 1400, height: 1008, alt: { fr: 'Détail de Composition 79 : pigments bleu profond', en: 'Detail of Composition 79: deep blue pigments' } },
   // Recadrés dans les AVIF détourés, pour l'ouverture de la page Démarche : deux
   // toiles vert-bleu, le cœur de l'une, le bord de l'autre (comme le duo bleu de Contact).
-  75: { src: '/assets/picture/details/detail-75.avif', width: 820, height: 590, alt: { fr: 'Détail de Composition 75 : rayonnement turquoise autour d’un cœur clair', en: 'Detail of Composition 75: turquoise rays around a pale heart' } },
-  57: { src: '/assets/picture/details/detail-57.avif', width: 600, height: 432, alt: { fr: 'Détail de Composition 57 : éclat blanc, bleu et jaune jusqu’au bord de la toile', en: 'Detail of Composition 57: white, blue and yellow burst up to the edge of the canvas' } },
+  75: { src: '/assets/picture/details/detail-75.avif', width: 1176, height: 847, alt: { fr: 'Détail de Composition 75 : rayonnement turquoise autour d’un cœur clair', en: 'Detail of Composition 75: turquoise rays around a pale heart' } },
+  57: { src: '/assets/picture/details/detail-57.avif', width: 940, height: 677, alt: { fr: 'Détail de Composition 57 : éclat blanc, bleu et jaune jusqu’au bord de la toile', en: 'Detail of Composition 57: white, blue and yellow burst up to the edge of the canvas' } },
 }
 
 // Vue d'accrochage (image de la galerie du site Wix).

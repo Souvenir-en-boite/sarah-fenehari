@@ -59,8 +59,6 @@ export const textes = {
     accueil: {
       eyebrow: 'Artiste peintre',
       titre: ['Sarah', 'Fenehari'],
-      // Une ligne par entrée, comme sur la maquette.
-      accroche: ['La couleur comme matière.', 'La lumière comme expérience.'],
       texte:
         "Des œuvres abstraites et circulaires, où la matière, la couleur et la lumière s'entrelacent pour révéler l'essentiel.",
       metaDescription:
@@ -241,7 +239,6 @@ export const textes = {
     accueil: {
       eyebrow: 'Painter',
       titre: ['Sarah', 'Fenehari'],
-      accroche: ['Colour as matter.', 'Light as experience.'],
       texte: 'Abstract, circular works where matter, colour and light intertwine to reveal the essential.',
       metaDescription:
         'Sarah Fenehari, painter based near Paris. Compositions: abstract paintings where colour becomes a living substance. Works, approach, exhibitions.',

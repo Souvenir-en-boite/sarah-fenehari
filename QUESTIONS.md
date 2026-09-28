@@ -5,8 +5,12 @@ Ce qu'il faut savoir avant la mise en ligne. Les réponses vont dans
 
 ## Indispensable avant la mise en ligne
 
-1. **Nom de domaine.** Lequel ? (`sarahfenehari.fr`, `.com`, `.art`…) Est-il
-   déjà acheté, et chez qui ? → `site.url`
+1. **Nom de domaine.** ✓ `sarahfenehari.com`, en cours de transfert vers
+   GoDaddy (septembre 2026). En attendant, le site vit sur
+   `sarah-fenehari.vercel.app` et toutes ses adresses absolues suivent le
+   domaine de production Vercel (voir `src/data/url-site.js`). Une fois le
+   transfert terminé : rattacher le domaine au projet Vercel (Settings →
+   Domains, puis les enregistrements DNS indiqués chez GoDaddy), c'est tout.
 2. **Adresse e-mail de contact.** ✓ `fenehari@hotmail.com` (septembre 2026).
    FormSubmit y enverra un e-mail d'activation au premier message envoyé
    depuis le formulaire : il faut cliquer le lien pour recevoir les suivants.
